@@ -1,11 +1,16 @@
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
+import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./screens/Home/Home";
+import TrendingState from "./context/Trending/TrendingState";
 
 function App() {
   return (
-    <div>
-      <Navbar/>
-    </div>
+    <TrendingState>
+      <div className="App">
+        <Navbar />
+        <Home />
+      </div>
+    </TrendingState>
   );
 }
 
