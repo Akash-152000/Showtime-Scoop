@@ -1,14 +1,32 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./navbar.css";
+import trendingContext from '../../context/Trending/trendinContext';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+    const context =  useContext(trendingContext)
+    const {searchItem, setSearchItem, search, searchData} = context;
+
+    const handleSearch= (e)=>{
+        setSearchItem(e.target.value)
+    }
+
+    const handleClick = (e) =>{
+        e.preventDefault()
+        search(searchItem)
+        
+    }
+
+
   return (
+
     <div>
       <nav className="navbar navbar-expand-lg bg-*">
         <div className="container-fluid">
-          <a className="navbar-brand text-white" href="#">
+          <Link className="navbar-brand text-white" to="/">
             Showtime Scoop
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,17 +41,17 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active text-white" aria-current="page" href="#">
+                <Link className="nav-link active text-white" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-white" href="#">
+                <Link className="nav-link text-white" to="/movies">
                   Movies
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-white">TV Shows</a>
+                <Link className="nav-link text-white" to="/tvshows">TV Shows</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
@@ -42,8 +60,12 @@ const Navbar = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="search"
+                value={searchItem}
+                id="search"
+                onChange={handleSearch}
               />
-              <button className="btn btn-outline-light" type="submit">
+              <button className="btn btn-outline-light" onClick={handleClick} type="submit">
                 Search
               </button>
             </form>
