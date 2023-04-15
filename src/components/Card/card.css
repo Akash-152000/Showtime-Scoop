@@ -1,0 +1,14 @@
+.card{
+    height: 15rem;
+    width: 10rem;
+    background-color: #05161a;
+    border: none;
+    margin-right: 30px;
+}
+
+.card-img-top{
+    object-fit: contain;
+    max-height: 100%; 
+    cursor: pointer;
+    border-radius: 20%;
+}

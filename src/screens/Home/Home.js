@@ -21,10 +21,8 @@ const Home = () => {
         </div>
         :
         <div>
-          <h3 className='text-light'>Movies</h3>
-          <Trending data={movies} name="movies"/>
-          <h3 className='text-light'>Tv Shows</h3>
-          <Trending data={tvShows} name="tvShows"/>
+          <Trending data={movies} name="Movies"/>
+          <Trending data={tvShows} name="TV Show"/>
         </div>
       }
       
