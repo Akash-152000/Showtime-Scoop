@@ -1,13 +1,14 @@
-/* .scrolling-wrapper {
-    display: flex;
-    flex-wrap: nowrap;
+h3{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+
+}
+
+.wrapper{
     overflow-x: auto;
-
-}
-.card {      
-    flex: 0 0 auto;
 }
 
-.scrolling-wrapper::-webkit-scrollbar{
-    display: none;
-} */
+.wrapper::-webkit-scrollbar{
+    width: 0;
+}
+
