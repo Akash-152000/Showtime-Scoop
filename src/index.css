@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #05161e;
+  background-color: #05161a;
+  font-family: 'PT Sans', sans-serif;
+
 }
 
 
