@@ -8,6 +8,7 @@ const TrendingState = (props) => {
   const [loading, setLoading] = useState(true);
   const [searchItem, setSearchItem] = useState("");
   const [searchData, setSearchData] = useState({});
+  const [updatedSearchItem , setUpdatedSearchItem] = useState("")
 
   const API_KEY = "c33a3ff17bd8ddd11d6b09f3caaabee8";
 
@@ -59,6 +60,7 @@ const TrendingState = (props) => {
         setSearchItem,
         search,
         searchData,
+        setUpdatedSearchItem
       }}
     >
       {props.children}
