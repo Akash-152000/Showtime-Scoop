@@ -5,6 +5,7 @@ import Movies from "./screens/Movies/Movies";
 import Tv from "./screens/TV/Tv";
 import TrendingState from "./context/Trending/TrendingState";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Search from "./screens/Search/Search";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/" element={<Home/>}/> 
             <Route exact path="/movies" element={<Movies/>}/> 
             <Route exact path="/tvshows" element={<Tv/>}/> 
+            <Route exact path="/search" element={<Search/>}/> 
           </Routes> 
         </div>
       </Router>
