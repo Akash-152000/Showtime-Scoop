@@ -1,12 +1,14 @@
 import React, {useContext} from "react";
 import "./navbar.css";
 import trendingContext from '../../context/Trending/trendinContext';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
     const context =  useContext(trendingContext)
-    const {searchItem, setSearchItem, search, searchData} = context;
+    const {searchItem, setSearchItem, search, searchData, setUpdatedSearchItem} = context;
+
+    const navigate = useNavigate();
 
     const handleSearch= (e)=>{
         setSearchItem(e.target.value)
@@ -15,6 +17,14 @@ const Navbar = () => {
     const handleClick = (e) =>{
         e.preventDefault()
         search(searchItem)
+      
+        // const newSearch =searchItem.filter(
+        //   (data)=> data.result.poster_path!==null
+        // )
+
+        // console.log(newSearch);
+        setSearchItem("")
+        navigate("/search")
         
     }
 
