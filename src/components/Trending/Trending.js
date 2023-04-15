@@ -1,6 +1,6 @@
 import React from 'react'
 import './trending.css'
-import Card from '../Card'
+import Card from '../Card/Card'
 import Spinner from '../../components/Spinner/Spinner';
 
 const Trending = (props) => {
@@ -9,11 +9,13 @@ const Trending = (props) => {
   return (
     <>
     {!data.results?<Spinner/>:
-        <div className='text-light container d-flex '>
+        <>
+        <h3 className="text-light container mb-3 mt-5">{name}</h3>
+        <div className='text-light container d-flex wrapper'>
             {data.results.map((ele,i)=>{
                 return(
-                    <div key={i}>
-                        <Card title={name==="movies"?ele.title:ele.name} poster ={ele.poster_path}/>
+                    <div className='item' key={i}>
+                        <Card title={name==="Movies"?ele.title:ele.name} poster ={ele.poster_path}/>
                     </div>
                 )
             })}
@@ -21,6 +23,7 @@ const Trending = (props) => {
             {}
         
         </div>
+        </>
     }
         
     </>
