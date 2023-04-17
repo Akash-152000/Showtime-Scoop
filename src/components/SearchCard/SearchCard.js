@@ -13,10 +13,10 @@ const SearchCard = (props) => {
       {
         !data.data?<Spinner/>
         :
-
-        <div className='d-flex'>
+        <>
+        <div className='d-flex container wrapper'>
           {data.data.results.map((ele,i)=>{
-                return(
+            return(
                     <div className='item ' key={i} >
                         {
                           ele.poster_path===null||ele.poster_path===undefined?<div style={{display:"none"}}></div>:<Card title={ele.title} poster={ele.poster_path}/>
@@ -24,9 +24,10 @@ const SearchCard = (props) => {
                         
                     </div>
                 )
-            })}
+              })}
 
         </div>
+      </>
       }
 
     </div>
