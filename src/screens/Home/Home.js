@@ -4,14 +4,17 @@ import './home.css'
 import Trending from '../../components/Trending/Trending';
 import Spinner from '../../components/Spinner/Spinner';
 
+
 const Home = () => {
 
   const context =  useContext(trendingContext)
-  const {movies, tvShows, loading} = context;
+  const {movies, tvShows, loading, showPortal,setShowPortal} = context;
+
 
   return (
     
     <div>
+     
       {
         
         loading?
