@@ -9,7 +9,6 @@ const SearchCard = (props) => {
 
   return (
     <div>
-      {console.log(data)}
       {
         !data.data?<Spinner/>
         :
