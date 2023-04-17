@@ -1,23 +1,47 @@
-import React, { useContext } from 'react'
-import trendingContext from '../../context/Trending/trendinContext';
-import Spinner from '../../components/Spinner/Spinner';
+import React, { useContext } from "react";
+import trendingContext from "../../context/Trending/trendinContext";
+import Spinner from "../../components/Spinner/Spinner";
+import "./movies.css";
+import Pagination from '@mui/material/Pagination';
+import { ThemeProvider, createTheme } from "@mui/material";
+
+
+const darkTheme = createTheme({
+  palette:{
+    mode:"dark"
+  }
+})
 
 const Movies = () => {
   const context = useContext(trendingContext);
-  const {movieData, loading} = context;
- 
-  return (
-    <div>
-    
-      {loading?<Spinner/>
-        :
-        <div>
-          Hloo
-        </div>
-      }
-      
-    </div>
-  )
-}
+  const { movieData, loading,setPage } = context;
 
-export default Movies
+  return (
+    <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <div className="row" style={{ marginLeft: 90 }}>
+          {movieData.map((ele) => {
+            return (
+              <div className="card mb-3 " key={ele.id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
+                  className="card-img-top"
+                  alt=""
+                />
+              </div>
+            );
+          })}
+          <div className="pagination">
+            <ThemeProvider theme={darkTheme}>
+              <Pagination onChange={(e)=>setPage(e.target.textContent)} count={100} size="large" hidePrevButton hideNextButton/>
+            </ThemeProvider>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Movies;
