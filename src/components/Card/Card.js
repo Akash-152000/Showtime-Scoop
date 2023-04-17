@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import './card.css'
+import trendingContext from "../../context/Trending/trendinContext";
+import Portal from '../../components/Portal/Portal';
 
 const Card = (props) => {
+  const context = useContext(trendingContext)
+  const {showPortal,setShowPortal, poster, setPoster} = context
+  
+
+
+
+  const handleClick =()=>{
+    setShowPortal(true)
+    setPoster(props.poster)
+  }
+
   return (
     <div>
-      {/* style={{"width": "18rem"}} */}
+      {showPortal&& <Portal/>}
       <div className="card ">
-
         {props.poster?
-        <img  
+        <img  onClick={handleClick}
           src={`https://image.tmdb.org/t/p/w500${props.poster}`}
           className="card-img-top"
-          alt="..."
+          alt=""
           />
           
         :<div>
