@@ -9,19 +9,19 @@ import Search from "./screens/Search/Search";
 
 function App() {
   return (
+    <div className="App">
     <TrendingState>
       <Router>
         <Navbar/>
-        <div className="App">
           <Routes>
             <Route exact path="/" element={<Home/>}/> 
             <Route exact path="/movies" element={<Movies/>}/> 
             <Route exact path="/tvshows" element={<Tv/>}/> 
             <Route exact path="/search" element={<Search/>}/> 
           </Routes> 
-        </div>
       </Router>
     </TrendingState>
+    </div>
   );
 }
 
