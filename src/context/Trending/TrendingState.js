@@ -13,7 +13,10 @@ const TrendingState = (props) => {
   const [showPortal, setShowPortal] = useState(false);
   const [poster, setPoster] = useState("");
 
+
+
   const [movieData, setMovieData] = useState([]); ///////// To store Movies data in /movies route
+  const [page,setPage] = useState(1)
 
   useEffect(() => {
     axios
@@ -45,18 +48,18 @@ const TrendingState = (props) => {
 
       axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`
       )
       .then((response) => {
         const data = response.data;
-        setMovieData(data);
-        // setLoading(false);
+        setMovieData(data.results);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
 
-  }, []);
+  }, [page]);
 
   const search = (searchQuery) => {
     axios
@@ -104,6 +107,7 @@ const TrendingState = (props) => {
         poster,
         setPoster,
         movieData,
+        setPage
       }}
     >
       {props.children}
