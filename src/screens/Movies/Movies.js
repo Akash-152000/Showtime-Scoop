@@ -24,7 +24,7 @@ const Movies = () => {
         <div className="row" style={{ marginLeft: 90 }}>
           {movieData.map((ele) => {
             return (
-              <div className="card mb-3 " key={ele.id}>
+              <div className="card mb-3 " key={ele.id} style={{display:`${ele.poster_path===null||ele.poster_path===undefined?"none":""}`}}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                   className="card-img-top"
@@ -35,7 +35,7 @@ const Movies = () => {
           })}
           <div className="pagination">
             <ThemeProvider theme={darkTheme}>
-              <Pagination onChange={(e)=>setPage(e.target.textContent)} count={100} size="large" hidePrevButton hideNextButton/>
+              <Pagination onChange={(e)=>setPage(e.target.textContent)} count={500} size="large" hidePrevButton hideNextButton/>
             </ThemeProvider>
           </div>
         </div>
