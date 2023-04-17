@@ -15,7 +15,7 @@ const Trending = (props) => {
             {data.results.map((ele,i)=>{
                 return(
                     <div className='item' key={i}>
-                        <Card title={name==="Movies"?ele.title:ele.name} poster ={ele.poster_path}/>
+                        <Card index={i} name={name} title={name==="Movies"?ele.title:ele.name} id ={ele.id} poster ={ele.poster_path}/>
                     </div>
                 )
             })}
