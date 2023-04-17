@@ -6,11 +6,14 @@ import SearchCard from '../../components/SearchCard/SearchCard'
 
 const Search = () => {
     const context = useContext(trendingContext)
-    const {searchData} = context
+    const {searchMovieData, searchTvData} = context
 
   return (
     <div className='text-light'>
-        <SearchCard data={searchData}/>
+        <h3 className='mt-5 container mb-5'>Movie Results</h3>
+        <SearchCard data={searchMovieData} />
+        <h3 className='mt-5 container mb-5'>Tv Show Results</h3>
+        <SearchCard data={searchTvData}/>
     </div>
   )
 }
