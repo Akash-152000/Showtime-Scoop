@@ -17,12 +17,6 @@ const Navbar = () => {
     const handleClick = (e) =>{
         e.preventDefault()
         search(searchItem)
-      
-        // const newSearch =searchItem.filter(
-        //   (data)=> data.result.poster_path!==null
-        // )
-
-        // console.log(newSearch);
         setSearchItem("")
         navigate("/search")
         
