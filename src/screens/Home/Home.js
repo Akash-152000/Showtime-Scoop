@@ -3,7 +3,7 @@ import trendingContext from '../../context/Trending/trendinContext';
 import './home.css'
 import Trending from '../../components/Trending/Trending';
 import Spinner from '../../components/Spinner/Spinner';
-
+import Portal from '../../components/Portal/Portal';
 
 const Home = () => {
 
@@ -24,6 +24,7 @@ const Home = () => {
         </div>
         :
         <div>
+          {showPortal&& <Portal/>}
           <Trending data={movies} name="Movies"/>
           <Trending data={tvShows} name="TV Show"/>
         </div>
