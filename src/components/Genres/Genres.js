@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import trendingContext from "../../context/Trending/trendinContext";
 import Spinner from "../Spinner/Spinner";
 import { ThemeProvider, createTheme } from "@mui/material"
-import useGenre from "../../customHook/useGenre";
 import axios from 'axios'
 
 const darkTheme = createTheme({
@@ -51,8 +50,13 @@ const getGenres=async ()=>{
 }
 
   useEffect(()=>{
-    
+
     getGenres()
+
+    return () => {
+      setGenres([]);
+      setSelectedGenres([])
+    };
 
   },[])
 
