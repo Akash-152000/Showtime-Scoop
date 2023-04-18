@@ -5,6 +5,7 @@ import "./tv.css";
 import Pagination from "@mui/material/Pagination";
 import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
+import Portal from "../../components/Portal/Portal";
 
 const darkTheme = createTheme({
   palette: {
@@ -14,7 +15,19 @@ const darkTheme = createTheme({
 
 const Tv = () => {
   const context = useContext(trendingContext);
-  const { tvData, loading, setPage } = context;
+  const { tvData,setPoster, loading,setPage, showPortal, setShowPortal, setTitle, setDesc, setReleaseDate, setRating } = context;
+
+  const handleClick =(ele)=>{
+    setShowPortal(true)
+    setPoster(ele.poster_path)
+    
+    setDesc(ele.overview)
+    
+    setRating(ele.vote_average)
+      setTitle(ele.name)
+      setReleaseDate(ele.first_air_date)
+    
+  }
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
@@ -23,10 +36,11 @@ const Tv = () => {
         <Spinner />
       ) : (
         <div className="row" style={{ marginLeft: 90 }}>
+          {showPortal&& <Portal/>}
           {tvData.map((ele) => {    
             return (
               <div className="card mb-3 " key={ele.id} style={{display:`${ele.poster_path===null||ele.poster_path===undefined?"none":""}`}}>
-                <img
+                <img onClick={()=>handleClick(ele)}
                   src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                   className="card-img-top"
                   alt=""
