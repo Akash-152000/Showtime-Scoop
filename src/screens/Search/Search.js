@@ -11,9 +11,9 @@ const Search = () => {
   return (
     <div className='text-light'>
         <h3 className='mt-5 container mb-5'>Movie Results</h3>
-        <SearchCard data={searchMovieData} />
+        <SearchCard data={searchMovieData} name='Movies' />
         <h3 className='mt-5 container mb-5'>Tv Show Results</h3>
-        <SearchCard data={searchTvData}/>
+        <SearchCard data={searchTvData} name='Tv'/>
     </div>
   )
 }
