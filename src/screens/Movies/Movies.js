@@ -3,7 +3,9 @@ import trendingContext from "../../context/Trending/trendinContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./movies.css";
 import Pagination from '@mui/material/Pagination';
+import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from "@mui/material";
+import Generes from "../../components/Genres/Genres";
 
 
 const darkTheme = createTheme({
@@ -18,10 +20,12 @@ const Movies = () => {
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
+      <Generes name='movie'/>
       {loading ? (
         <Spinner />
       ) : (
         <div className="row" style={{ marginLeft: 90 }}>
+          
           {movieData.map((ele) => {
             return (
               <div className="card mb-3 " key={ele.id} style={{display:`${ele.poster_path===null||ele.poster_path===undefined?"none":""}`}}>
