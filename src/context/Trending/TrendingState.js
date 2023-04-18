@@ -31,9 +31,17 @@ const TrendingState = (props) => {
 
 
 
+  ////////////////////////////////////////////////////Portal Description////////////////////////////////////
+  const [title, setTitle] = useState('')
+  const [desc, setDesc] = useState('')
+  const [releaseDate, setReleaseDate] = useState('')
+  const [rating, setRating] = useState('')
+
+
   
 
   useEffect(() => {
+    // console.log(title,desc,releaseDate,rating);
     axios
       .get(
         `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}`
@@ -146,6 +154,14 @@ const TrendingState = (props) => {
         setGenres,
         selectedGenres,
         setSelectedGenres,
+        title,
+        setTitle,
+        desc,
+        setDesc,
+        releaseDate,
+        setReleaseDate,
+        rating,
+        setRating
 
       }}
     >
