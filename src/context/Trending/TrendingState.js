@@ -1,6 +1,8 @@
 import trendingContext from "./trendinContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useGenre from "../../customHook/useGenre";
+
 
 const TrendingState = (props) => {
   const [movies, setMovies] = useState({}); ////// To store trending movies data
@@ -13,14 +15,23 @@ const TrendingState = (props) => {
   const [showPortal, setShowPortal] = useState(false);
   const [poster, setPoster] = useState("");
 
+
+  
   const [movieData, setMovieData] = useState([]); ///////// To store Movies data in /movies route
   const [page, setPage] = useState(1);
-
+  
   const [tvData, setTvData] = useState([]); ///////// To store Tv shows data in /tvshows route
-  // const [page, setPage] = useState(1);
+  
+  
+  /////////////////////////////Generes//////////////////////////////////////////
+  const [genres, setGenres] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  // const [genreForUrl, setGenreForUrl] = useState('')
+  const genreForUrl = useGenre(selectedGenres);
 
 
 
+  
 
   useEffect(() => {
     axios
@@ -50,9 +61,10 @@ const TrendingState = (props) => {
       });
 
     /////////////////////////////////////////////////Get Movies///////////////////////////////////////////////
+    
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
       )
       .then((response) => {
         const data = response.data;
@@ -67,7 +79,7 @@ const TrendingState = (props) => {
 
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate`
+        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
       )
       .then((response) => {
         const data = response.data;
@@ -77,7 +89,11 @@ const TrendingState = (props) => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [page]);
+
+      
+
+
+  }, [page, genreForUrl]);
 
   /////////////////////////////////////////////////Search/////////////////////////////////////////////////////
 
@@ -126,6 +142,11 @@ const TrendingState = (props) => {
         movieData,
         tvData,
         setPage,
+        genres,
+        setGenres,
+        selectedGenres,
+        setSelectedGenres,
+
       }}
     >
       {props.children}
