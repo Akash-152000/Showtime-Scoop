@@ -10,7 +10,7 @@ const Trending = (props) => {
     <>
     {!data.results?<Spinner/>:
         <>
-        <h3 className="text-light container mb-3 mt-5">{name}</h3>
+        <h3 className="text-light container mb-3 mt-5">Trending {name}</h3>
         <div className='text-light container d-flex wrapper'>
             {data.results.map((ele,i)=>{
                 return(
