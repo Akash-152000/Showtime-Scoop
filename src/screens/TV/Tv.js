@@ -4,6 +4,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import "./tv.css";
 import Pagination from "@mui/material/Pagination";
 import { ThemeProvider, createTheme } from "@mui/material";
+import Generes from "../../components/Genres/Genres";
 
 const darkTheme = createTheme({
   palette: {
@@ -17,6 +18,7 @@ const Tv = () => {
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
+      <Generes name='tv'/>
       {loading ? (
         <Spinner />
       ) : (
