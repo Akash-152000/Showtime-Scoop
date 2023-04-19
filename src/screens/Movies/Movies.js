@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import trendingContext from "../../context/Trending/trendinContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./movies.css";
@@ -31,10 +31,7 @@ const Movies = (props) => {
     rating,
   } = context;
 
-  // const handleClick =(ele)=>{
-  //   setShowPortal(true)
-  //   setPoster(ele.poster_path)
-  // }
+  const [invisible, setInvisible] = useState(true)
 
   const handleClick = (ele) => {
     setShowPortal(true);
@@ -69,11 +66,15 @@ const Movies = (props) => {
                 }}
               >
                 <Badge badgeContent={ele.vote_average} 
-                color={ele.vote_average>=8?'success':ele.vote_average>=6?'warning':'error'} 
-                className="badge"
+                  color={ele.vote_average>=8?'success':ele.vote_average>=6?'warning':'error'} 
+                  className="badge"
+                  // invisible={}
+                  
+                  invisible={invisible!==ele.id}
                 >
                   <img
-                    onClick={() => handleClick(ele)}
+                    onClick={() => handleClick(ele)} onMouseEnter={() => setInvisible(ele.id)}
+                    onMouseLeave={() => setInvisible(true)}
                     src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                     className="card-img-top"
                     alt=""
