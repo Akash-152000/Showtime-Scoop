@@ -14,6 +14,7 @@ const TrendingState = (props) => {
   const [updatedSearchItem, setUpdatedSearchItem] = useState("");
   const [showPortal, setShowPortal] = useState(false);
   const [poster, setPoster] = useState("");
+  const [cast, setCast] = useState()
 
 
   
@@ -161,7 +162,9 @@ const TrendingState = (props) => {
         releaseDate,
         setReleaseDate,
         rating,
-        setRating
+        setRating,
+        cast,
+        setCast
 
       }}
     >
