@@ -28,3 +28,13 @@
     max-width: 100%;
 }
 
+.close{
+    cursor: pointer;
+    float: right;
+    margin-top: 5px;
+    width:20px;
+}
+
+.close:hover{
+    color:red;
+}
