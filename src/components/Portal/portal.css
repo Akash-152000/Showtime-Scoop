@@ -15,10 +15,10 @@
     top: 50%;
     left:50%;
     transform: translate(-50%,-50%);
-    max-width: 80rem;
+    max-width: 100rem;
     z-index: 99999;
-    height: 500px;
-    width: 60rem;
+    height: 600px;
+    width: 80rem;
     background: #0c364a;    
 }
 
