@@ -22,10 +22,11 @@ const Card = (props) => {
 
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${props.ele.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/${props.name==="Movies"?'movie':'tv'}/${props.ele.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
       )
       .then((response) => {
         const data = response.data;
+        console.log(data);
         setCast(data)
       })
       .catch((error) => {
