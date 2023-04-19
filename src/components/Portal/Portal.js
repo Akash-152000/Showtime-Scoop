@@ -25,7 +25,7 @@ const Portal = (props) => {
   return ReactDOM.createPortal(
     <>
       <div className="modal-wrapper text-light" onClick={closePortal}></div>
-      <div className="portal text-white d-flex">
+      <div className="portal text-white d-flex pe-3">
         <img
           src={`https://image.tmdb.org/t/p/w500${poster}`}
           className="portal-img-top"
@@ -41,6 +41,7 @@ const Portal = (props) => {
           </div>
           <PortalDesc />
         </div>
+        <h5 onClick={closePortal} className="close" >X</h5>
       </div>
     </>,
     document.getElementById("portal")
