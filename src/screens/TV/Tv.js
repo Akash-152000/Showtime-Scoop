@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
+import axios from 'axios'
 
 const darkTheme = createTheme({
   palette: {
@@ -27,11 +28,29 @@ const Tv = () => {
     setDesc,
     setReleaseDate,
     setRating,
+    setCast
   } = context;
 
   const [invisible, setInvisible] = useState(true);
 
-  const handleClick = (ele) => {
+  const handleClick = async (ele) => {
+
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/tv/${ele.id}/credits?api_key=${
+          process.env.REACT_APP_API_KEY
+        }&language=en-US`
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        setCast(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+
     setShowPortal(true);
     setPoster(ele.poster_path);
 
