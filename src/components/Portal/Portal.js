@@ -7,11 +7,21 @@ const Portal = (props) => {
   const context = useContext(trendingContext);
   const { title, desc, releaseDate, rating, setShowPortal, poster } = context;
 
+  const closePortal = () =>{
+    setShowPortal(false)
+  }
+
+  document.onkeydown = function (evt) {
+    if (evt.key == 'Escape') {
+        setShowPortal(false);
+    }
+};
+
   return ReactDOM.createPortal(
     <>
       <div
         className="modal-wrapper text-light"
-        onClick={() => setShowPortal(false)}
+        onClick={closePortal}
       ></div>
       <div className="portal text-white d-flex">
           <img
