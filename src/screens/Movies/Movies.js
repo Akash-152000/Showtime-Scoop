@@ -8,6 +8,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
+import axios from 'axios'
 
 const darkTheme = createTheme({
   palette: {
@@ -28,12 +29,27 @@ const Movies = (props) => {
     setDesc,
     setReleaseDate,
     setRating,
-    rating,
+    setCast,
   } = context;
 
-  const [invisible, setInvisible] = useState(true)
+  const [invisible, setInvisible] = useState(true);
 
-  const handleClick = (ele) => {
+  const handleClick = async (ele) => {
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${ele.id}/credits?api_key=${
+          process.env.REACT_APP_API_KEY
+        }&language=en-US`
+      )
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        setCast(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
     setShowPortal(true);
     setPoster(ele.poster_path);
 
@@ -65,15 +81,23 @@ const Movies = (props) => {
                   }`,
                 }}
               >
-                <Badge badgeContent={ele.vote_average} 
-                  color={ele.vote_average>=8?'success':ele.vote_average>=6?'warning':'error'} 
+                <Badge
+                  badgeContent={ele.vote_average}
+                  color={
+                    ele.vote_average >= 8
+                      ? "success"
+                      : ele.vote_average >= 6
+                      ? "warning"
+                      : "error"
+                  }
                   className="badge"
                   // invisible={}
-                  
-                  invisible={invisible!==ele.id}
+
+                  invisible={invisible !== ele.id}
                 >
                   <img
-                    onClick={() => handleClick(ele)} onMouseEnter={() => setInvisible(ele.id)}
+                    onClick={() => handleClick(ele)}
+                    onMouseEnter={() => setInvisible(ele.id)}
                     onMouseLeave={() => setInvisible(true)}
                     src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                     className="card-img-top"
