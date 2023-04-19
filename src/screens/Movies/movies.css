@@ -28,5 +28,7 @@
 }
 
 .badge{
+    padding: 0;
     display: none;
 }
+
