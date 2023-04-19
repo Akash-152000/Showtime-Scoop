@@ -14,7 +14,7 @@ const Trending = (props) => {
         <div className='text-light container d-flex wrapper'>
             {data.results.map((ele,i)=>{
                 return(
-                    <div className='item' key={i}>
+                    <div className='item mt-4' key={i}>
                         <Card index={i} name={name} ele={ele} title={name==="Movies"?ele.title:ele.name} id ={ele.id} poster ={ele.poster_path}/>
                     </div>
                 )
