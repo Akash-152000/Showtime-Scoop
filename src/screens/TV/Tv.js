@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import trendingContext from "../../context/Trending/trendinContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./tv.css";
@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
+import Badge from "@mui/material/Badge";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,36 +16,69 @@ const darkTheme = createTheme({
 
 const Tv = () => {
   const context = useContext(trendingContext);
-  const { tvData,setPoster, loading,setPage, showPortal, setShowPortal, setTitle, setDesc, setReleaseDate, setRating } = context;
+  const {
+    tvData,
+    setPoster,
+    loading,
+    setPage,
+    showPortal,
+    setShowPortal,
+    setTitle,
+    setDesc,
+    setReleaseDate,
+    setRating,
+  } = context;
 
-  const handleClick =(ele)=>{
-    setShowPortal(true)
-    setPoster(ele.poster_path)
-    
-    setDesc(ele.overview)
-    
-    setRating(ele.vote_average)
-      setTitle(ele.name)
-      setReleaseDate(ele.first_air_date)
-    
-  }
+  const [invisible, setInvisible] = useState(true);
+
+  const handleClick = (ele) => {
+    setShowPortal(true);
+    setPoster(ele.poster_path);
+
+    setDesc(ele.overview);
+
+    setRating(ele.vote_average);
+    setTitle(ele.name);
+    setReleaseDate(ele.first_air_date);
+  };
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
-      <Generes name='tv'/>
+      <Generes name="tv" />
       {loading ? (
         <Spinner />
       ) : (
         <div className="row" style={{ marginLeft: 90 }}>
-          {showPortal&& <Portal/>}
-          {tvData.map((ele) => {    
+          {showPortal && <Portal />}
+          {tvData.map((ele) => {
             return (
-              <div className="card mb-3 " key={ele.id} style={{display:`${ele.poster_path===null||ele.poster_path===undefined?"none":""}`}}>
-                <img onClick={()=>handleClick(ele)}
+              <div
+                className="card mb-3 "
+                key={ele.id}
+                style={{
+                  display: `${
+                    ele.poster_path === null || ele.poster_path === undefined
+                      ? "none"
+                      : ""
+                  }`,
+                }}
+              >
+                <Badge badgeContent={ele.vote_average} 
+                  color={ele.vote_average>=8?'success':ele.vote_average>=6?'warning':'error'} 
+                  className="badge"
+                  // invisible={}
+                  
+                  invisible={invisible!==ele.id}
+                >
+                <img
+                  onClick={() => handleClick(ele)}
+                  onMouseEnter={() => setInvisible(ele.id)}
+                  onMouseLeave={() => setInvisible(true)}
                   src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                   className="card-img-top"
                   alt=""
                 />
+                </Badge>
               </div>
             );
           })}
