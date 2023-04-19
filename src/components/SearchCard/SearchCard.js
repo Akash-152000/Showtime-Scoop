@@ -22,7 +22,7 @@ const SearchCard = (props) => {
         {showPortal&& <Portal/>}
           {data.data.results.map((ele,i)=>{
             return(
-                    <div className='item ' key={i} >
+                    <div className='item mt-4' key={i} >
                         {
                           ele.poster_path===null||ele.poster_path===undefined?<div style={{display:"none"}}></div>:<Card title={ele.title} ele={ele} name={name}  poster={ele.poster_path}/>
                         }
