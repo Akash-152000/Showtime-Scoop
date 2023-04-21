@@ -3,12 +3,11 @@ import trendingContext from "../../context/Trending/trendinContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./movies.css";
 import Pagination from "@mui/material/Pagination";
-import Chip from "@mui/material/Chip";
 import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
-import axios from 'axios'
+import axios from "axios";
 
 const darkTheme = createTheme({
   palette: {
@@ -30,6 +29,8 @@ const Movies = (props) => {
     setReleaseDate,
     setRating,
     setCast,
+    fav,
+    setFav,
   } = context;
 
   const [invisible, setInvisible] = useState(true);
@@ -37,9 +38,7 @@ const Movies = (props) => {
   const handleClick = async (ele) => {
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${ele.id}/credits?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US`
+        `https://api.themoviedb.org/3/movie/${ele.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
       )
       .then((response) => {
         const data = response.data;
@@ -60,6 +59,15 @@ const Movies = (props) => {
     setReleaseDate(ele.release_date);
   };
 
+  const handleFav = (ele) => {
+    console.log(fav.includes(ele));
+    if (fav.includes(ele)) {
+      setFav(fav.filter((g) => g.id !== ele.id));
+    } else {
+      setFav([...fav, ele]);
+    }
+  };
+
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
       <Generes name="movie" />
@@ -71,7 +79,7 @@ const Movies = (props) => {
           {movieData.map((ele) => {
             return (
               <div
-                className="card mb-3 "
+                className="card mb-3"
                 key={ele.id}
                 style={{
                   display: `${
@@ -91,18 +99,26 @@ const Movies = (props) => {
                       : "error"
                   }
                   className="badge"
-                  // invisible={}
-
                   invisible={invisible !== ele.id}
                 >
-                  <img
-                    onClick={() => handleClick(ele)}
-                    onMouseEnter={() => setInvisible(ele.id)}
-                    onMouseLeave={() => setInvisible(true)}
-                    src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
-                    className="card-img-top"
-                    alt=""
-                  />
+                  <div className="card-container mb-5" style={{height:"auto"}}>
+                    <img
+                      onClick={() => handleClick(ele)}
+                      onMouseEnter={() => setInvisible(ele.id)}
+                      onMouseLeave={() => setInvisible(true)}
+                      src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
+                      className="card-img-top"
+                      alt=""
+                    />
+                    <div className="card-body text-center text-light">
+                      <i
+                        className={`${
+                          fav.includes(ele) ? "fa-solid" : "fa-regular"
+                        } fa-heart  fa-lg heart`}
+                        onClick={() => handleFav(ele)}
+                      ></i>
+                    </div>
+                  </div>
                 </Badge>
               </div>
             );
