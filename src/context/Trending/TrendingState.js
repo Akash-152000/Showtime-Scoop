@@ -15,6 +15,9 @@ const TrendingState = (props) => {
   const [showPortal, setShowPortal] = useState(false);
   const [poster, setPoster] = useState("");
   const [cast, setCast] = useState()
+  const [eleInfo, setEleInfo] = useState([])
+
+  const [fav, setFav] = useState([]);///////////////To store favourites
 
 
   
@@ -164,7 +167,11 @@ const TrendingState = (props) => {
         rating,
         setRating,
         cast,
-        setCast
+        setCast,
+        fav,
+        setFav,
+        eleInfo,
+        setEleInfo
 
       }}
     >
