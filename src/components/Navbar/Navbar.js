@@ -1,30 +1,32 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
-import trendingContext from '../../context/Trending/trendinContext';
+import trendingContext from "../../context/Trending/trendinContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const context = useContext(trendingContext);
+  const {
+    searchItem,
+    setSearchItem,
+    search,
+    searchData,
+    setUpdatedSearchItem,
+  } = context;
 
-    const context =  useContext(trendingContext)
-    const {searchItem, setSearchItem, search, searchData, setUpdatedSearchItem} = context;
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handleSearch = (e) => {
+    setSearchItem(e.target.value);
+  };
 
-    const handleSearch= (e)=>{
-        setSearchItem(e.target.value)
-    }
-
-    const handleClick = (e) =>{
-        e.preventDefault()
-        search(searchItem)
-        setSearchItem("")
-        navigate("/search")
-        
-    }
-
+  const handleClick = (e) => {
+    e.preventDefault();
+    search(searchItem);
+    setSearchItem("");
+    navigate("/search");
+  };
 
   return (
-
     <div>
       <nav className="navbar navbar-expand-lg bg-*">
         <div className="container-fluid">
@@ -45,7 +47,11 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active text-white" aria-current="page" to="/">
+                <Link
+                  className="nav-link active text-white"
+                  aria-current="page"
+                  to="/"
+                >
                   Home
                 </Link>
               </li>
@@ -55,7 +61,9 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/tvshows">TV Shows</Link>
+                <Link className="nav-link text-white" to="/tvshows">
+                  TV Shows
+                </Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
@@ -69,9 +77,19 @@ const Navbar = () => {
                 id="search"
                 onChange={handleSearch}
               />
-              <button className="btn btn-outline-light" onClick={handleClick} type="submit">
+              <button
+                className="btn btn-outline-light"
+                onClick={handleClick}
+                type="submit"
+              >
                 Search
               </button>
+              <Link className="btn btn-primary mx-1" to="/login" role="button">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-1" to="signup" role="button">
+                Signup
+              </Link>
             </form>
           </div>
         </div>
