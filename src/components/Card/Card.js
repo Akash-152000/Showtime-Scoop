@@ -16,7 +16,7 @@ const Card = (props) => {
     setCast,
     setFav,
     fav,
-    setEleInfo
+    setEleInfo,
   } = context;
 
   const [invisible, setInvisible] = useState(true);
@@ -39,7 +39,7 @@ const Card = (props) => {
       });
     setShowPortal(true);
     setPoster(props.poster);
-    setEleInfo(props.ele)
+    setEleInfo(props.ele);
 
     setDesc(props.ele.overview);
 
@@ -54,56 +54,51 @@ const Card = (props) => {
     }
   };
 
-
-  const handleFav =(ele)=>{
+  const handleFav = (ele) => {
     console.log(fav.includes(ele));
-    if(fav.includes(ele)){
-      setFav(fav.filter((g)=>g.id!==ele.id));
+    if (fav.includes(ele)) {
+      setFav(fav.filter((g) => g.id !== ele.id));
+    } else {
+      setFav([...fav, ele]);
     }
-    else{
-      setFav([...fav,ele])
-    }
-  }
-
+  };
 
   return (
-    <div className="card">
-        <Badge
-          badgeContent={Math.round(props.ele.vote_average * 10) / 10}
-          color={
-            props.ele.vote_average >= 8
-              ? "success"
-              : props.ele.vote_average >= 6
-              ? "warning"
-              : "error"
-          }
-          invisible={invisible !== props.ele.id}
-        >
-          {props.poster ? (
-            <div className="d-flex flex-column">
-              <img
-                onClick={handleClick}
-                onMouseEnter={() => setInvisible(props.ele.id)}
-                onMouseLeave={() => setInvisible(true)}
-                src={`https://image.tmdb.org/t/p/w500${props.poster}`}
-                className="card-img-top"
-                alt=""
-              />
-              <div className="card-body text-center text-light">
-              <i className={`${fav.includes(props.ele)?"fa-solid":"fa-regular"} fa-heart fa-lg heart`} onClick={()=>handleFav(props.ele)}></i>
-                {/* <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p> */}
-                {/* <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
-              </div>
+    <div className="card" >
+      <Badge
+        badgeContent={Math.round(props.ele.vote_average * 10) / 10}
+        color={
+          props.ele.vote_average >= 8
+            ? "success"
+            : props.ele.vote_average >= 6
+            ? "warning"
+            : "error"
+        }
+        invisible={invisible !== props.ele.id}
+      >
+        {props.poster ? (
+          <div className="d-flex flex-column mx-2">
+            <img
+              onClick={handleClick}
+              onMouseEnter={() => setInvisible(props.ele.id)}
+              onMouseLeave={() => setInvisible(true)}
+              src={`https://image.tmdb.org/t/p/w500${props.poster}`}
+              className="card-img-top"
+              alt=""
+            />
+            <div className="card-body text-center text-light">
+              <i
+                className={`${
+                  fav.includes(props.ele) ? "fa-solid" : "fa-regular"
+                } fa-heart fa-lg heart`}
+                onClick={() => handleFav(props.ele)}
+              ></i>
             </div>
-          ) : (
-            <div></div>
-          )}
-        </Badge>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </Badge>
     </div>
   );
 };
