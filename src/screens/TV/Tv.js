@@ -7,7 +7,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
-import axios from 'axios'
+import axios from "axios";
 
 const darkTheme = createTheme({
   palette: {
@@ -28,18 +28,17 @@ const Tv = () => {
     setDesc,
     setReleaseDate,
     setRating,
-    setCast
+    setCast,
+    fav,
+    setFav
   } = context;
 
   const [invisible, setInvisible] = useState(true);
 
   const handleClick = async (ele) => {
-
     await axios
       .get(
-        `https://api.themoviedb.org/3/tv/${ele.id}/credits?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US`
+        `https://api.themoviedb.org/3/tv/${ele.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
       )
       .then((response) => {
         const data = response.data;
@@ -50,7 +49,6 @@ const Tv = () => {
         console.error("Error fetching data:", error);
       });
 
-
     setShowPortal(true);
     setPoster(ele.poster_path);
 
@@ -59,6 +57,15 @@ const Tv = () => {
     setRating(ele.vote_average);
     setTitle(ele.name);
     setReleaseDate(ele.first_air_date);
+  };
+
+  const handleFav = (ele) => {
+    console.log(fav.includes(ele));
+    if (fav.includes(ele)) {
+      setFav(fav.filter((g) => g.id !== ele.id));
+    } else {
+      setFav([...fav, ele]);
+    }
   };
 
   return (
@@ -72,7 +79,7 @@ const Tv = () => {
           {tvData.map((ele) => {
             return (
               <div
-                className="card mb-3 "
+                className="card " 
                 key={ele.id}
                 style={{
                   display: `${
@@ -82,21 +89,38 @@ const Tv = () => {
                   }`,
                 }}
               >
-                <Badge badgeContent={ele.vote_average} 
-                  color={ele.vote_average>=8?'success':ele.vote_average>=6?'warning':'error'} 
+                <Badge
+                  badgeContent={ele.vote_average}
+                  color={
+                    ele.vote_average >= 8
+                      ? "success"
+                      : ele.vote_average >= 6
+                      ? "warning"
+                      : "error"
+                  }
                   className="badge"
                   // invisible={}
-                  
-                  invisible={invisible!==ele.id}
+
+                  invisible={invisible !== ele.id}
                 >
-                <img
-                  onClick={() => handleClick(ele)}
-                  onMouseEnter={() => setInvisible(ele.id)}
-                  onMouseLeave={() => setInvisible(true)}
-                  src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
-                  className="card-img-top"
-                  alt=""
-                />
+                  <div className="card-container mb-5" style={{ height: "auto" }}>
+                    <img
+                      onClick={() => handleClick(ele)}
+                      onMouseEnter={() => setInvisible(ele.id)}
+                      onMouseLeave={() => setInvisible(true)}
+                      src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
+                      className="card-img-top"
+                      alt=""
+                    />
+                    <div className="card-body text-center text-light">
+                      <i
+                        className={`${
+                          fav.includes(ele) ? "fa-solid" : "fa-regular"
+                        } fa-heart  fa-lg heart`}
+                        onClick={() => handleFav(ele)}
+                      ></i>
+                    </div>
+                  </div>
                 </Badge>
               </div>
             );
