@@ -17,7 +17,7 @@ const Card = (props) => {
   } = context;
 
   const [invisible, setInvisible] = useState(true)
-
+ 
   const handleClick = async () => {
 
     await axios
@@ -26,14 +26,11 @@ const Card = (props) => {
       )
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setCast(data)
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
-
     setShowPortal(true);
     setPoster(props.poster);
 
