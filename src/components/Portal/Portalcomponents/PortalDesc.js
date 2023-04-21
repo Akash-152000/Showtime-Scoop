@@ -8,7 +8,7 @@ const PortalDesc = () => {
 
   return (
     <div>
-      <div className="d-flex container desc-wrapper  mt-5">
+      <div className="d-flex container desc-wrapper  mt-3">
         {cast.cast.map((ele) => {
           return (
             <>
