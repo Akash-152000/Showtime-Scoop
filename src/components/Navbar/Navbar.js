@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import "./navbar.css";
 import trendingContext from "../../context/Trending/trendinContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  let location = useLocation();
+
   const context = useContext(trendingContext);
   const {
     searchItem,
     setSearchItem,
-    search,
-    searchData,
-    setUpdatedSearchItem,
+    search
   } = context;
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-*">
+      <nav className="navbar navbar-expand-lg bg-* pt-3">
         <div className="container-fluid">
           <Link className="navbar-brand text-white" to="/">
             Showtime Scoop
@@ -48,7 +48,7 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className="nav-link active text-white"
+                  className={`nav-link ${location.pathname==='/'?"text-primary":"text-white"} `}
                   aria-current="page"
                   to="/"
                 >
@@ -56,12 +56,12 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/movies">
+                <Link className={`nav-link ${location.pathname==='/movies'?"text-primary":"text-white"}`} to="/movies">
                   Movies
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/tvshows">
+                <Link className={`nav-link ${location.pathname==='/tvshows'?"text-primary":"text-white"}`} to="/tvshows">
                   TV Shows
                 </Link>
               </li>
