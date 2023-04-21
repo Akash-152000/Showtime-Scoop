@@ -26,7 +26,7 @@ const Home = () => {
         <div>
           {showPortal&& <Portal/>}
           <Trending data={movies} name="Movies"/>
-          <Trending data={tvShows} name="TV Show"/>
+          <Trending data={tvShows} name="TV Shows"/>
         </div>
       }
       
