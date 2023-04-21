@@ -7,8 +7,7 @@ import PortalDesc from "./Portalcomponents/PortalDesc";
 
 const Portal = (props) => {
   const context = useContext(trendingContext);
-  const { title, desc, releaseDate, rating, setShowPortal, poster, cast } =
-    context;
+  const { title, desc, releaseDate, rating, setShowPortal, poster, fav, setFav, eleInfo } =  context;
 
   const closePortal = () => {
     setShowPortal(false);
@@ -22,6 +21,16 @@ const Portal = (props) => {
     }
   };
 
+  const handleFav =(ele)=>{
+    console.log(fav.includes(ele));
+    if(fav.includes(ele)){
+      setFav(fav.filter((g)=>g.id!==ele.id));
+    }
+    else{
+      setFav([...fav,ele])
+    }
+  }
+
   return ReactDOM.createPortal(
     <>
       <div className="modal-wrapper text-light" onClick={closePortal}></div>
@@ -32,7 +41,7 @@ const Portal = (props) => {
           alt="..."
         />
 
-        <div className="content m-2">
+        <div className="content text-center m-2">
           <h3 className="title text-center">{title}</h3>
           <h5 className="description px-3 pt-3">{desc}</h5>
           <div className="date-rate d-flex justify-content-between px-5 pt-2">
@@ -40,6 +49,7 @@ const Portal = (props) => {
             <h5 className="rating">Rating: {Math.round(rating*10)/10}</h5>
           </div>
           <PortalDesc />
+        <i className={`${fav.includes(eleInfo)?"fa-solid":"fa-regular"} fa-heart fa-2xl heart` } style={{marginTop:40,cursor:"pointer"}} onClick={()=>handleFav(eleInfo)}></i>
         </div>
         <h5 onClick={closePortal} className="close" >X</h5>
       </div>
