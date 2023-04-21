@@ -6,21 +6,28 @@ import Tv from "./screens/TV/Tv";
 import TrendingState from "./context/Trending/TrendingState";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./screens/Search/Search";
+import AuthState from "./context/Authentication/AuthState";
+import Login from "./screens/Login/Login";
+import Signup from "./screens/Signup/Signup";
 
 function App() {
   return (
     <div className="App">
-    <TrendingState>
       <Router>
-        <Navbar/>
-          <Routes>
-            <Route exact path="/" element={<Home/>}/> 
-            <Route exact path="/movies" element={<Movies/>}/> 
-            <Route exact path="/tvshows" element={<Tv/>}/> 
-            <Route exact path="/search" element={<Search/>}/> 
-          </Routes> 
+        <TrendingState>
+          <AuthState>
+            <Navbar />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/movies" element={<Movies />} />
+              <Route exact path="/tvshows" element={<Tv />} />
+              <Route exact path="/search" element={<Search />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/signup" element={<Signup />} />
+            </Routes>
+          </AuthState>
+        </TrendingState>
       </Router>
-    </TrendingState>
     </div>
   );
 }
