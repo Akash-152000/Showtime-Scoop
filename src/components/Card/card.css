@@ -1,13 +1,34 @@
-.card{
-    height: 15rem;
+/* .card-container{
+    height: 19rem;
+} */ */
+
+/* .card{
+    height: 19rem;
     width: 10rem;
     background-color: #05161a;
     border: none;
     margin-right: 30px;
-}
+}  */
 
 .card-img-top{
     object-fit: contain;
     max-height: 100%; 
     cursor: pointer;
+}
+
+.card-body{
+    background: #0c364a;
+    /* padding: 0; */
+    cursor: pointer;
+}
+
+.heart{
+    color:red
+    /* transition: transform 0.3s ease-out; */
+}
+
+.heart:hover{
+    font-size: xx-large;
+    transform: scale(1.2);
+    transition: transform 0.5s;
 }
