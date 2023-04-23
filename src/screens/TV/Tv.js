@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./tv.css";
 import Pagination from "@mui/material/Pagination";
@@ -16,7 +16,7 @@ const darkTheme = createTheme({
 });
 
 const Tv = () => {
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const {
     tvData,
     setPoster,
@@ -62,7 +62,7 @@ const Tv = () => {
   const handleFav = (ele) => {
     console.log(fav.includes(ele));
     if (fav.includes(ele)) {
-      setFav(fav.filter((g) => g.id !== ele.id));
+      setFav(fav.filter((g) => g !== ele));
     } else {
       setFav([...fav, ele]);
     }
@@ -115,9 +115,9 @@ const Tv = () => {
                     <div className="card-body text-center text-light">
                       <i
                         className={`${
-                          fav.includes(ele) ? "fa-solid" : "fa-regular"
+                          fav.includes(ele.id) ? "fa-solid" : "fa-regular"
                         } fa-heart  fa-lg heart`}
-                        onClick={() => handleFav(ele)}
+                        onClick={() => handleFav(ele.id)}
                       ></i>
                     </div>
                   </div>

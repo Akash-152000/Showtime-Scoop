@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import "./navbar.css";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
 
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const {
     searchItem,
     setSearchItem,

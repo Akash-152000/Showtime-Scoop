@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import "./portalDesc.css";
-import trendingContext from "../../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../../context/FetchApiData/fetchApiDataContext";
 
 const PortalDesc = () => {
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const { cast } = context;
 
   return (

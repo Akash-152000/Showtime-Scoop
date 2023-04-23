@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./card.css";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
 
 const Card = (props) => {
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const {
     setShowPortal,
     setPoster,
@@ -39,7 +39,7 @@ const Card = (props) => {
       });
     setShowPortal(true);
     setPoster(props.poster);
-    setEleInfo(props.ele);
+    setEleInfo(props.ele.id);
 
     setDesc(props.ele.overview);
 
@@ -56,8 +56,9 @@ const Card = (props) => {
 
   const handleFav = (ele) => {
     console.log(fav.includes(ele));
+    console.log(fav);
     if (fav.includes(ele)) {
-      setFav(fav.filter((g) => g.id !== ele.id));
+      setFav(fav.filter((g) => g !== ele));
     } else {
       setFav([...fav, ele]);
     }
@@ -78,6 +79,7 @@ const Card = (props) => {
       >
         {props.poster ? (
           <div className="d-flex flex-column mx-2">
+            {/* {console.log(ele)} */}
             <img
               onClick={handleClick}
               onMouseEnter={() => setInvisible(props.ele.id)}
@@ -89,9 +91,9 @@ const Card = (props) => {
             <div className="card-body text-center text-light">
               <i
                 className={`${
-                  fav.includes(props.ele) ? "fa-solid" : "fa-regular"
+                  fav.includes(props.ele.id) ? "fa-solid" : "fa-regular"
                 } fa-heart fa-lg heart`}
-                onClick={() => handleFav(props.ele)}
+                onClick={() => handleFav(props.ele.id)}
               ></i>
             </div>
           </div>

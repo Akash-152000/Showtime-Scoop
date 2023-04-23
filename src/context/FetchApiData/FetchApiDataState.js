@@ -1,10 +1,10 @@
-import trendingContext from "./trendinContext";
+import fetchApiDataContext from "./fetchApiDataContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useGenre from "../../customHook/useGenre";
 
 
-const TrendingState = (props) => {
+const FetchApiDataState = (props) => {
   const [movies, setMovies] = useState({}); ////// To store trending movies data
   const [tvShows, setTvShows] = useState({});
   const [loading, setLoading] = useState(true);
@@ -136,7 +136,7 @@ const TrendingState = (props) => {
   };
 
   return (
-    <trendingContext.Provider
+    <fetchApiDataContext.Provider
       value={{
         movies,
         tvShows,
@@ -176,8 +176,8 @@ const TrendingState = (props) => {
       }}
     >
       {props.children}
-    </trendingContext.Provider>
+    </fetchApiDataContext.Provider>
   );
 };
 
-export default TrendingState;
+export default FetchApiDataState;

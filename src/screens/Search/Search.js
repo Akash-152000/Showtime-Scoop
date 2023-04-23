@@ -1,11 +1,11 @@
 import React,{useContext} from 'react'
 import './search.css'
-import trendingContext from '../../context/Trending/trendinContext'
+import fetchApiDataContext from '../../context/FetchApiData/fetchApiDataContext'
 import SearchCard from '../../components/SearchCard/SearchCard'
 
 
 const Search = () => {
-    const context = useContext(trendingContext)
+    const context = useContext(fetchApiDataContext)
     const {searchMovieData, searchTvData} = context
 
   return (

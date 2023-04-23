@@ -1,6 +1,6 @@
 import { Chip } from "@mui/material";
 import React, { useContext, useEffect } from "react";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Spinner from "../Spinner/Spinner";
 import { ThemeProvider, createTheme } from "@mui/material"
 import axios from 'axios'
@@ -12,7 +12,7 @@ const darkTheme = createTheme({
 })
 
 const Generes = (props) => {
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const { genres,setGenres,setPage, selectedGenres, setSelectedGenres, loading} = context;
   
 

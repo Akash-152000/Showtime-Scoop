@@ -1,12 +1,12 @@
 import React, { useContext, useRef } from "react";
 import "./portal.css";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import ReactDOM from "react-dom";
 import PortalDesc from "./Portalcomponents/PortalDesc";
 
 
 const Portal = (props) => {
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
   const { title, desc, releaseDate, rating, setShowPortal, poster, fav, setFav, eleInfo } =  context;
 
   const closePortal = () => {
@@ -24,11 +24,12 @@ const Portal = (props) => {
   const handleFav =(ele)=>{
     console.log(fav.includes(ele));
     if(fav.includes(ele)){
-      setFav(fav.filter((g)=>g.id!==ele.id));
+      setFav(fav.filter((g)=>g!==ele));
     }
     else{
       setFav([...fav,ele])
     }
+    
   }
 
   return ReactDOM.createPortal(
@@ -51,6 +52,7 @@ const Portal = (props) => {
           <PortalDesc />
         <i className={`${fav.includes(eleInfo)?"fa-solid":"fa-regular"} fa-heart fa-2xl heart` } style={{marginTop:40,cursor:"pointer"}} onClick={()=>handleFav(eleInfo)}></i>
         </div>
+        {console.log(fav)}
         <h5 onClick={closePortal} className="close" >X</h5>
       </div>
     </>,

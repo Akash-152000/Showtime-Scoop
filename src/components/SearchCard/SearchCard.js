@@ -2,12 +2,12 @@ import React, {useContext} from 'react'
 import Spinner from '../Spinner/Spinner'
 import Card from '../Card/Card'
 import Portal from "../../components/Portal/Portal";
-import trendingContext from "../../context/Trending/trendinContext";
+import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 
 const SearchCard = (props) => {
   const {data, name} = props
 
-  const context = useContext(trendingContext);
+  const context = useContext(fetchApiDataContext);
     const { movieData,setPoster, loading,setPage, showPortal, setShowPortal, setTitle, setDesc, setReleaseDate, setRating } = context;
 
 
