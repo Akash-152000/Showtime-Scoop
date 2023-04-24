@@ -17,7 +17,7 @@ const FetchApiDataState = (props) => {
   const [cast, setCast] = useState()
   const [eleInfo, setEleInfo] = useState([])
 
-  const [fav, setFav] = useState([]);///////////////To store favourites
+  const [favUpdated, setFavUpdated] = useState(false)
 
 
   
@@ -168,10 +168,10 @@ const FetchApiDataState = (props) => {
         setRating,
         cast,
         setCast,
-        fav,
-        setFav,
         eleInfo,
-        setEleInfo
+        setEleInfo,
+        favUpdated,
+        setFavUpdated
 
       }}
     >
