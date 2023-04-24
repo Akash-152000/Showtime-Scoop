@@ -21,7 +21,6 @@ const handleSubmit=async (e)=>{
 
     if(credentials.password === credentials.cPassword){
       const result = await signup(credentials)
-      console.log(result.data);
     }
     else{
       
