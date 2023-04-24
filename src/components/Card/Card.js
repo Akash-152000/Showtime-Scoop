@@ -3,6 +3,7 @@ import "./card.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
+import favContext from "../../context/Favourites/favContext";
 
 const Card = (props) => {
   const context = useContext(fetchApiDataContext);
@@ -14,10 +15,14 @@ const Card = (props) => {
     setReleaseDate,
     setRating,
     setCast,
-    setFav,
-    fav,
     setEleInfo,
+    setFavUpdated,
+    favUpdated
   } = context;
+
+  const contextFav = useContext(favContext)
+  const {updateFav, removeFav, fav} = contextFav
+
 
   const [invisible, setInvisible] = useState(true);
 
@@ -55,12 +60,13 @@ const Card = (props) => {
   };
 
   const handleFav = (ele) => {
-    console.log(fav.includes(ele));
-    console.log(fav);
     if (fav.includes(ele)) {
-      setFav(fav.filter((g) => g !== ele));
+      removeFav(ele)
+      setFavUpdated(!favUpdated)
+
     } else {
-      setFav([...fav, ele]);
+      updateFav(ele)
+      setFavUpdated(!favUpdated)
     }
   };
 
