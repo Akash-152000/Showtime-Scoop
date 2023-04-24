@@ -3,11 +3,16 @@ import "./portal.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import ReactDOM from "react-dom";
 import PortalDesc from "./Portalcomponents/PortalDesc";
+import favContext from "../../context/Favourites/favContext";
 
 
 const Portal = (props) => {
   const context = useContext(fetchApiDataContext);
-  const { title, desc, releaseDate, rating, setShowPortal, poster, fav, setFav, eleInfo } =  context;
+  const { title, desc, releaseDate, rating, setShowPortal, poster, eleInfo,setFavUpdated,
+    favUpdated } =  context;
+
+  const contextFav = useContext(favContext)
+  const {updateFav, removeFav, fav} = contextFav
 
   const closePortal = () => {
     setShowPortal(false);
@@ -21,16 +26,18 @@ const Portal = (props) => {
     }
   };
 
-  const handleFav =(ele)=>{
-    console.log(fav.includes(ele));
-    if(fav.includes(ele)){
-      setFav(fav.filter((g)=>g!==ele));
+  const handleFav = (ele) => {
+    console.log(fav);
+    if (fav.includes(ele)) {
+      removeFav(ele)
+      setFavUpdated(!favUpdated)
+
+    } else {
+      updateFav(ele)
+      setFavUpdated(!favUpdated)
     }
-    else{
-      setFav([...fav,ele])
-    }
-    
-  }
+  };
+
 
   return ReactDOM.createPortal(
     <>
@@ -52,7 +59,6 @@ const Portal = (props) => {
           <PortalDesc />
         <i className={`${fav.includes(eleInfo)?"fa-solid":"fa-regular"} fa-heart fa-2xl heart` } style={{marginTop:40,cursor:"pointer"}} onClick={()=>handleFav(eleInfo)}></i>
         </div>
-        {console.log(fav)}
         <h5 onClick={closePortal} className="close" >X</h5>
       </div>
     </>,
