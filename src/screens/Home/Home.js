@@ -9,14 +9,13 @@ import favContext from '../../context/Favourites/favContext';
 const Home = () => {
 
   const context =  useContext(fetchApiDataContext)
-  const {movies, tvShows, loading, showPortal,favUpdated} = context;
+  const {movies, tvShows, loading, showPortal,favUpdated,fav} = context;
 
   const contextFav = useContext(favContext)
   const {getFav} = contextFav
 
   useEffect(()=>{
     getFav()
-    // console.log(dummFav);
   },[favUpdated])
 
 
