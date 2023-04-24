@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect,useState, useContext } from "react";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Spinner from "../../components/Spinner/Spinner";
 import "./movies.css";
@@ -8,6 +8,7 @@ import Generes from "../../components/Genres/Genres";
 import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
+import favContext from "../../context/Favourites/favContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -29,9 +30,12 @@ const Movies = (props) => {
     setReleaseDate,
     setRating,
     setCast,
-    fav,
-    setFav,
+    setFavUpdated,
+    favUpdated
   } = context;
+
+  const contextFav = useContext(favContext)
+  const {getFav,updateFav, removeFav, fav} = contextFav
 
   const [invisible, setInvisible] = useState(true);
 
@@ -42,7 +46,6 @@ const Movies = (props) => {
       )
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setCast(data);
       })
       .catch((error) => {
@@ -59,14 +62,21 @@ const Movies = (props) => {
     setReleaseDate(ele.release_date);
   };
 
+
   const handleFav = (ele) => {
-    console.log(fav.includes(ele));
     if (fav.includes(ele)) {
-      setFav(fav.filter((g) => g !== ele));
+      removeFav(ele)
+      setFavUpdated(!favUpdated)
+
     } else {
-      setFav([...fav, ele]);
+      updateFav(ele)
+      setFavUpdated(!favUpdated)
     }
   };
+
+  useEffect(()=>{
+    getFav()
+  })
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
