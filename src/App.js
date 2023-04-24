@@ -10,8 +10,13 @@ import AuthState from "./context/Authentication/AuthState";
 import Login from "./screens/Login/Login";
 import Signup from "./screens/Signup/Signup";
 import FavState from "./context/Favourites/FavState";
+import { useEffect, useContext } from "react";
+import favContext from "./context/Favourites/favContext";
 
 function App() {
+
+  
+
   return (
     <div className="App">
       <Router>
