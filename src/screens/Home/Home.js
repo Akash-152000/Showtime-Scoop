@@ -16,6 +16,7 @@ const Home = () => {
 
   useEffect(()=>{
     getFav()
+
   },[favUpdated])
 
 
