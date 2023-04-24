@@ -22,9 +22,7 @@ const Login = () => {
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        console.log(credentials);
         const result = await login(credentials)
-        console.log(result.data);
     }
 
   return (
