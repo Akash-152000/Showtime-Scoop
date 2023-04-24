@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import "./portal.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import ReactDOM from "react-dom";
@@ -12,13 +12,12 @@ const Portal = (props) => {
     favUpdated } =  context;
 
   const contextFav = useContext(favContext)
-  const {updateFav, removeFav, fav} = contextFav
+  const {getFav,updateFav, removeFav, fav} = contextFav
 
   const closePortal = () => {
     setShowPortal(false);
   };
 
-  let closeImg = {cursor:'pointer', float:'right', marginTop: '5px', width: '20px'};
 
   document.onkeydown = function (evt) {
     if (evt.key == "Escape") {
@@ -27,16 +26,20 @@ const Portal = (props) => {
   };
 
   const handleFav = (ele) => {
-    console.log(fav);
     if (fav.includes(ele)) {
       removeFav(ele)
       setFavUpdated(!favUpdated)
-
+      
     } else {
       updateFav(ele)
       setFavUpdated(!favUpdated)
     }
+    console.log(fav, eleInfo);
   };
+
+  useEffect(()=>{
+    getFav()
+  })
 
 
   return ReactDOM.createPortal(
@@ -51,7 +54,7 @@ const Portal = (props) => {
 
         <div className="content text-center m-2">
           <h3 className="title text-center">{title}</h3>
-          <h5 className="description px-3 pt-3">{desc}</h5>
+          <h6 className="description px-3 pt-3">{desc}</h6>
           <div className="date-rate d-flex justify-content-between px-5 pt-2">
             <h5 className="releaseDate">Release Date: {releaseDate}</h5>
             <h5 className="rating">Rating: {Math.round(rating*10)/10}</h5>
