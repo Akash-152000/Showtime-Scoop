@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import authContext from "./authContext";
 import axios from "axios";
+import { useContext } from "react";
+import favContext from "../Favourites/favContext";
 
 const AuthState = (props) => {
     let navigate = useNavigate();
+
+    const context = useContext(favContext)
+    const {addFav} = context
 
   const login = async (credentials) => {
 
@@ -23,7 +28,6 @@ const AuthState = (props) => {
         console.log(error.response.data);
       })
       
-      console.log(response.data);
       if(response.data.success){
         localStorage.setItem('token',response.data.authtoken)
         navigate("/")
@@ -50,9 +54,10 @@ const AuthState = (props) => {
         console.log(error.response.data);
       })
       
-      console.log(response.data);
+      // console.log(response.data);
       if(response.data.success){
         localStorage.setItem('token',response.data.authtoken)
+        addFav()
         navigate("/")
       }
       return response
