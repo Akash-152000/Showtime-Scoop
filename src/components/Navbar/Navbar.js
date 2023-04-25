@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import "./navbar.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const Navbar = () => {
   let location = useLocation();
@@ -90,6 +92,7 @@ const Navbar = () => {
               <Link className="btn btn-primary mx-1" to="signup" role="button">
                 Signup
               </Link>
+              <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
             </form>
           </div>
         </div>
