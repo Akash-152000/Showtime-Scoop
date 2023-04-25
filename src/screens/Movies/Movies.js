@@ -9,6 +9,7 @@ import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
 import favContext from "../../context/Favourites/favContext";
+import { useNavigate } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -17,6 +18,9 @@ const darkTheme = createTheme({
 });
 
 const Movies = (props) => {
+
+  let navigate = useNavigate();
+
   const context = useContext(fetchApiDataContext);
   const {
     movieData,
@@ -80,7 +84,12 @@ const Movies = (props) => {
   };
 
   useEffect(()=>{
-    getFav()
+    if(localStorage.getItem('token')){
+      getFav();
+    }
+    else{
+      navigate("/login")
+    }
   },[favUpdated])
 
   return (
