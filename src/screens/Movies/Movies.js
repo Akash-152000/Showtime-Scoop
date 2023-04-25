@@ -31,7 +31,8 @@ const Movies = (props) => {
     setRating,
     setCast,
     setFavUpdated,
-    favUpdated
+    favUpdated,
+    setEleInfo
   } = context;
 
   const contextFav = useContext(favContext)
@@ -56,6 +57,7 @@ const Movies = (props) => {
     setPoster(ele.poster_path);
 
     setDesc(ele.overview);
+    setEleInfo(ele.id)
 
     setRating(ele.vote_average);
     setTitle(ele.title);
@@ -64,6 +66,8 @@ const Movies = (props) => {
 
 
   const handleFav = (ele) => {
+    // // console.log(fav,ele);
+    // console.log(fav.includes(ele));
     if (fav.includes(ele)) {
       removeFav(ele)
       setFavUpdated(!favUpdated)
@@ -72,11 +76,12 @@ const Movies = (props) => {
       updateFav(ele)
       setFavUpdated(!favUpdated)
     }
+    // console.log(fav.includes(ele));
   };
 
   useEffect(()=>{
     getFav()
-  })
+  },[favUpdated])
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>

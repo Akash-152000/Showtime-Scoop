@@ -76,7 +76,7 @@ const Tv = () => {
   };
   useEffect(()=>{
     getFav()
-  })
+  },[favUpdated])
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>

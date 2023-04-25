@@ -26,6 +26,8 @@ const Portal = (props) => {
   };
 
   const handleFav = (ele) => {
+    // console.log(fav,ele,"ele ");
+    console.log(fav.includes(ele));
     if (fav.includes(ele)) {
       removeFav(ele)
       setFavUpdated(!favUpdated)
@@ -39,7 +41,7 @@ const Portal = (props) => {
 
   useEffect(()=>{
     getFav()
-  })
+  },[favUpdated])
 
 
   return ReactDOM.createPortal(

@@ -26,7 +26,7 @@ const PortalDesc = () => {
                       <b>{ele.name}</b>
                       <br></br>
                     </div>
-                    <h7>{`(${ele.character})`}</h7>
+                    <h6>{`(${ele.character})`}</h6>
                   </div>
                 </div>
               )}

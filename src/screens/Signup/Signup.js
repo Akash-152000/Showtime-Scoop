@@ -21,7 +21,8 @@ const handleSubmit=async (e)=>{
 
     if(credentials.password === credentials.cPassword){
       const result = await signup(credentials)
-      getUser();
+      console.log(result);
+      // getUser();
     }
     else{
       console.log("Password and confirm password do not match")

@@ -3,12 +3,16 @@ import authContext from "./authContext";
 import axios from "axios";
 import { useContext } from "react";
 import favContext from "../Favourites/favContext";
+import fetchApiDataContext from "../FetchApiData/fetchApiDataContext";
 
 const AuthState = (props) => {
   let navigate = useNavigate();
 
   const context = useContext(favContext);
   const { addFav } = context;
+
+  const fetchContext = useContext(fetchApiDataContext)
+  const {userName, setUserName} = fetchContext
 
   const login = async (credentials) => {
     const response = await axios
@@ -63,25 +67,25 @@ const AuthState = (props) => {
     return response;
   };
 
-  const getUser = async () => {
+
+
+  const getUser = async (authtoken) => {
     const response = await axios
-      .get(
-        "http://localhost:5000/api/auth/getuser",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token":`${localStorage.getItem('token')}`,
-          },
-        }
-      )
+      .get("http://localhost:5000/api/auth/getuser", {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": `${localStorage.getItem("token")}`,
+        },
+      })
       .catch((error) => {
         console.log(error.response.data);
       });
 
-    if (response) {
-      console.log(response);
-    }
-    return response;
+      if (response) {
+        // console.log(response.data.name);
+        setUserName(response.data.name)
+      }
+    
   };
 
   return (

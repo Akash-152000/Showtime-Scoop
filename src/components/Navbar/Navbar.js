@@ -12,7 +12,8 @@ const Navbar = () => {
   const {
     searchItem,
     setSearchItem,
-    search
+    search,
+    userName
   } = context;
 
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ const Navbar = () => {
               <Link className="btn btn-primary mx-1" to="signup" role="button">
                 Signup
               </Link>
-              <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+              <Avatar sx={{ bgcolor: deepOrange[500] }}>{userName.charAt(0).toUpperCase()}</Avatar>
             </form>
           </div>
         </div>

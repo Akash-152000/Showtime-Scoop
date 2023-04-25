@@ -19,6 +19,8 @@ const FetchApiDataState = (props) => {
 
   const [favUpdated, setFavUpdated] = useState(false)
 
+  const [userName, setUserName] = useState('')
+
 
   
   const [movieData, setMovieData] = useState([]); ///////// To store Movies data in /movies route
@@ -171,7 +173,9 @@ const FetchApiDataState = (props) => {
         eleInfo,
         setEleInfo,
         favUpdated,
-        setFavUpdated
+        setFavUpdated,
+        userName,
+        setUserName
 
       }}
     >
