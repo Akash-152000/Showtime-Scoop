@@ -4,9 +4,12 @@ import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext"
 import ReactDOM from "react-dom";
 import PortalDesc from "./Portalcomponents/PortalDesc";
 import favContext from "../../context/Favourites/favContext";
+import { useNavigate } from "react-router-dom";
 
 
-const Portal = (props) => {
+const Portal = () => {
+  let navigate = useNavigate();
+
   const context = useContext(fetchApiDataContext);
   const { title, desc, releaseDate, rating, setShowPortal, poster, eleInfo,setFavUpdated,
     favUpdated } =  context;
@@ -40,7 +43,12 @@ const Portal = (props) => {
   };
 
   useEffect(()=>{
-    getFav()
+    if(localStorage.getItem('token')){
+      getFav();
+    }
+    else{
+      navigate("/login")
+    }
   },[favUpdated])
 
 
