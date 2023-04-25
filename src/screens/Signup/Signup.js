@@ -6,7 +6,7 @@ const Signup = () => {
 
   const [credentials, setcredentials] = useState({name:"",email:"",password:"",cPassword:""})
   const context = useContext(authContext);
-  const {signup} = context;
+  const {signup, getUser} = context;
 
 
 
@@ -21,9 +21,10 @@ const handleSubmit=async (e)=>{
 
     if(credentials.password === credentials.cPassword){
       const result = await signup(credentials)
+      getUser();
     }
     else{
-      
+      console.log("Password and confirm password do not match")
     }
 }
 
