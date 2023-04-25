@@ -9,6 +9,7 @@ import Portal from "../../components/Portal/Portal";
 import Badge from "@mui/material/Badge";
 import axios from "axios";
 import favContext from "../../context/Favourites/favContext";
+import { useNavigate } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -17,6 +18,9 @@ const darkTheme = createTheme({
 });
 
 const Tv = () => {
+
+  let navigate = useNavigate();
+
   const context = useContext(fetchApiDataContext);
   const {
     tvData,
@@ -31,7 +35,8 @@ const Tv = () => {
     setRating,
     setCast,
     setFavUpdated,
-    favUpdated
+    favUpdated,
+    setEleInfo
   } = context;
 
   const contextFav = useContext(favContext)
@@ -58,6 +63,7 @@ const Tv = () => {
     setPoster(ele.poster_path);
 
     setDesc(ele.overview);
+    setEleInfo(ele.id)  
 
     setRating(ele.vote_average);
     setTitle(ele.name);
@@ -75,7 +81,12 @@ const Tv = () => {
     }
   };
   useEffect(()=>{
-    getFav()
+    if(localStorage.getItem('token')){
+      getFav();
+    }
+    else{
+      navigate("/login")
+    }
   },[favUpdated])
 
   return (
