@@ -12,6 +12,7 @@ import Signup from "./screens/Signup/Signup";
 import FavState from "./context/Favourites/FavState";
 import { useEffect, useContext } from "react";
 import favContext from "./context/Favourites/favContext";
+import Favourites from "./screens/Favourites/Favourites";
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
                 <Route exact path="/search" element={<Search />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/signup" element={<Signup />} />
+                <Route exact path="/favourites" element={<Favourites/>} />
+
               </Routes>
             </AuthState>
           </FavState>
