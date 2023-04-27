@@ -20,7 +20,6 @@ const FavState = (props) => {
         console.log(error.response.data);
       });
 
-    // console.log(response.data);
     setId(response.data[0]._id);
     setFav(response.data[0].favourite);
   };

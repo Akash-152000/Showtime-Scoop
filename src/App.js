@@ -21,8 +21,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <FetchApiDataState>
           <FavState>
+        <FetchApiDataState>
             <AuthState>
               <Navbar />
               <Routes>
@@ -37,8 +37,8 @@ function App() {
 
               </Routes>
             </AuthState>
-          </FavState>
         </FetchApiDataState>
+          </FavState>
       </Router>
     </div>
   );

@@ -9,7 +9,7 @@ const Navbar = () => {
   let location = useLocation();
 
   const context = useContext(fetchApiDataContext);
-  const { searchItem, setSearchItem, search, userName } = context;
+  const { searchItem, setSearchItem, search, userName} = context;
 
   const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ const Navbar = () => {
     localStorage.removeItem('token')
     navigate("/login")
   }
+
 
   return (
     <div>
@@ -125,14 +126,14 @@ const Navbar = () => {
                     aria-labelledby="dropdownMenuButton2"
                     style={{ marginLeft: -155 }}
                   ><li style={{paddingLeft:15}}>
-                    <p>Signed in as <br /> User1</p>
+                    <p>Signed in as <br />{userName}</p>
                   </li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
                       <Link className="dropdown-item" to="/favourites">
-                        Your Favourites
+                        Your Favourites 
                       </Link>
                     </li>
                     <li>
