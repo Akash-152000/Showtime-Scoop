@@ -21,8 +21,8 @@ const PortalDesc = () => {
                     className="desc-card-img-top"
                     alt=""
                   />
-                  <div>
-                    <div>
+                  <div key={ele.id}>
+                    <div key={ele.id}>
                       <b>{ele.name}</b>
                       <br></br>
                     </div>

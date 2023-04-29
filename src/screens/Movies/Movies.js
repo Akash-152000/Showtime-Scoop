@@ -10,6 +10,7 @@ import Badge from "@mui/material/Badge";
 import axios from "axios";
 import favContext from "../../context/Favourites/favContext";
 import { useNavigate } from "react-router-dom";
+import authContext from "../../context/Authentication/authContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -37,8 +38,13 @@ const Movies = (props) => {
     setCast,
     setFavUpdated,
     favUpdated,
-    setEleInfo
+    setEleInfo,
+    favouriteMovie
   } = context;
+
+
+  const authenticationContext = useContext(authContext)
+  const {getUser} = authenticationContext
 
   const contextFav = useContext(favContext)
   const {getFav,updateFav, removeFav, fav} = contextFav
@@ -88,7 +94,10 @@ const Movies = (props) => {
 
   useEffect(()=>{
     if(localStorage.getItem('token')){
+
       getFav();
+      getUser(localStorage.getItem('token'));
+      favouriteMovie()
     }
     else{
       navigate("/login")
@@ -125,6 +134,7 @@ const Movies = (props) => {
                       ? "warning"
                       : "error"
                   }
+                  
                   className="badge"
                   invisible={invisible !== ele.id}
                 >

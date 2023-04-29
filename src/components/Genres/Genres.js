@@ -77,7 +77,7 @@ const getGenres=async ()=>{
           {
             selectedGenres.map((ele)=>{
               return (
-                <ThemeProvider theme={darkTheme}>
+                <ThemeProvider theme={darkTheme} key={ele.id}>
                   <Chip 
                     label={ele.name}  
                     style={{marginLeft:6,marginBottom:8}}
@@ -96,20 +96,20 @@ const getGenres=async ()=>{
           
             genres.map((ele)=>{
               return (
-                <ThemeProvider theme={darkTheme}>
+                <ThemeProvider theme={darkTheme} key={ele.id}>
                   <Chip 
                     label={ele.name}  
                     style={{marginLeft:6,marginBottom:8}}
                     clickable
-                    key={ele.id}
+                    key={ele}
                     onClick={()=>handleAdd(ele)}
                   />
+                  {/* {console.log(ele.id,"kli")} */}
                 </ThemeProvider>
                   
               )
             })
           }
-          
         </div>
       }
       

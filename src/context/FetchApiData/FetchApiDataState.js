@@ -1,10 +1,14 @@
 import fetchApiDataContext from "./fetchApiDataContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import useGenre from "../../customHook/useGenre";
-
+import favContext from "../Favourites/favContext";
 
 const FetchApiDataState = (props) => {
+
+  const context = useContext(favContext)
+  const {fav} = context
+
   const [movies, setMovies] = useState({}); ////// To store trending movies data
   const [tvShows, setTvShows] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14,37 +18,30 @@ const FetchApiDataState = (props) => {
   const [updatedSearchItem, setUpdatedSearchItem] = useState("");
   const [showPortal, setShowPortal] = useState(false);
   const [poster, setPoster] = useState("");
-  const [cast, setCast] = useState()
-  const [eleInfo, setEleInfo] = useState([])
+  const [cast, setCast] = useState();
+  const [eleInfo, setEleInfo] = useState([]);
 
-  const [favUpdated, setFavUpdated] = useState(false)
+  const [favUpdated, setFavUpdated] = useState(false);
+  const [favList, setFavList] = useState({});
 
-  const [userName, setUserName] = useState('')
+  const [userName, setUserName] = useState("");
 
-
-  
   const [movieData, setMovieData] = useState([]); ///////// To store Movies data in /movies route
   const [page, setPage] = useState(1);
-  
+
   const [tvData, setTvData] = useState([]); ///////// To store Tv shows data in /tvshows route
-  
-  
+
   /////////////////////////////Generes//////////////////////////////////////////
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   // const [genreForUrl, setGenreForUrl] = useState('')
   const genreForUrl = useGenre(selectedGenres);
 
-
-
   ////////////////////////////////////////////////////Portal Description////////////////////////////////////
-  const [title, setTitle] = useState('')
-  const [desc, setDesc] = useState('')
-  const [releaseDate, setReleaseDate] = useState('')
-  const [rating, setRating] = useState('')
-
-
-  
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [rating, setRating] = useState("");
 
   useEffect(() => {
     // console.log(title,desc,releaseDate,rating);
@@ -75,7 +72,7 @@ const FetchApiDataState = (props) => {
       });
 
     /////////////////////////////////////////////////Get Movies///////////////////////////////////////////////
-    
+
     axios
       .get(
         `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
@@ -103,11 +100,23 @@ const FetchApiDataState = (props) => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
-      
-
-
   }, [page, genreForUrl]);
+
+  /////////////////////////////////////////////////Get movie by id////////////////////////////////////////////
+
+  const favouriteMovie = () => {
+    console.log(fav);
+    fav.map((ele) => {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${ele}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        )
+        .then((response) => {
+          console.log(response);
+          setFavList(response.data);
+        });
+    });
+  };
 
   /////////////////////////////////////////////////Search/////////////////////////////////////////////////////
 
@@ -175,8 +184,10 @@ const FetchApiDataState = (props) => {
         favUpdated,
         setFavUpdated,
         userName,
-        setUserName
-
+        setUserName,
+        favouriteMovie,
+        setFavList,
+        favList,
       }}
     >
       {props.children}

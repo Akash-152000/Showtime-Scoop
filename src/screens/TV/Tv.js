@@ -10,6 +10,7 @@ import Badge from "@mui/material/Badge";
 import axios from "axios";
 import favContext from "../../context/Favourites/favContext";
 import { useNavigate } from "react-router-dom";
+import authContext from "../../context/Authentication/authContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -39,6 +40,9 @@ const Tv = () => {
     setEleInfo
   } = context;
 
+  const authenticationContext = useContext(authContext)
+  const {getUser} = authenticationContext
+
   const contextFav = useContext(favContext)
   const {getFav,updateFav, removeFav, fav} = contextFav
 
@@ -52,7 +56,6 @@ const Tv = () => {
       )
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setCast(data);
       })
       .catch((error) => {
@@ -83,6 +86,7 @@ const Tv = () => {
   useEffect(()=>{
     if(localStorage.getItem('token')){
       getFav();
+      getUser(localStorage.getItem('token'));
     }
     else{
       navigate("/login")
@@ -100,7 +104,7 @@ const Tv = () => {
           {tvData.map((ele) => {
             return (
               <div
-                className="card " 
+                className="card mb-3"
                 key={ele.id}
                 style={{
                   display: `${
@@ -119,12 +123,11 @@ const Tv = () => {
                       ? "warning"
                       : "error"
                   }
+                  
                   className="badge"
-                  // invisible={}
-
                   invisible={invisible !== ele.id}
                 >
-                  <div className="card-container mb-5" style={{ height: "auto" }}>
+                  <div className="card-container mb-5" style={{height:"auto"}}>
                     <img
                       onClick={() => handleClick(ele)}
                       onMouseEnter={() => setInvisible(ele.id)}

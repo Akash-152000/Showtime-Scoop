@@ -98,9 +98,9 @@ const Card = (props) => {
             <div className="card-body text-center text-light">
               <i
                 className={`${
-                  fav.includes(props.ele.id) ? "fa-solid" : "fa-regular"
+                  fav.includes(props.ele) ? "fa-solid" : "fa-regular"
                 } fa-heart fa-lg heart`}
-                onClick={() => handleFav(props.ele.id)}
+                onClick={() => handleFav(props.ele)}
               ></i>
             </div>
           </div>
