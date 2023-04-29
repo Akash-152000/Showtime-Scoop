@@ -17,7 +17,7 @@ const AuthState = (props) => {
   const login = async (credentials) => {
     const response = await axios
       .post(
-        "http://localhost:5000/api/auth/login",
+        `${process.env.REACT_APP_BACKEND_API}/api/auth/login`,
         {
           email: credentials.email,
           password: credentials.password,
@@ -42,7 +42,7 @@ const AuthState = (props) => {
   const signup = async (credentials) => {
     const response = await axios
       .post(
-        "http://localhost:5000/api/auth/createuser",
+        `${process.env.REACT_APP_BACKEND_API}/api/auth/createuser`,
         {
           name: credentials.name,
           email: credentials.email,
@@ -71,7 +71,7 @@ const AuthState = (props) => {
 
   const getUser = async (authtoken) => {
     const response = await axios
-      .get("http://localhost:5000/api/auth/getuser", {
+      .get(`${process.env.REACT_APP_BACKEND_API}/api/auth/getuser`, {
         headers: {
           "Content-Type": "application/json",
           "auth-token": `${localStorage.getItem("token")}`,

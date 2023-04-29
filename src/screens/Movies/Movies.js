@@ -27,6 +27,7 @@ const Movies = (props) => {
     setPoster,
     loading,
     setPage,
+    page,
     showPortal,
     setShowPortal,
     setTitle,
@@ -70,8 +71,7 @@ const Movies = (props) => {
 
 
   const handleFav = (ele) => {
-    // // console.log(fav,ele);
-    // console.log(fav.includes(ele));
+
     if (fav.includes(ele)) {
       removeFav(ele)
       setFavUpdated(!favUpdated)
@@ -80,8 +80,11 @@ const Movies = (props) => {
       updateFav(ele)
       setFavUpdated(!favUpdated)
     }
-    // console.log(fav.includes(ele));
   };
+  
+  const handleChange =(e)=>{
+    setPage(e.target.textContent)
+  }
 
   useEffect(()=>{
     if(localStorage.getItem('token')){
@@ -150,7 +153,7 @@ const Movies = (props) => {
           <div className="pagination">
             <ThemeProvider theme={darkTheme}>
               <Pagination
-                onChange={(e) => setPage(e.target.textContent)}
+                onChange={(e) => {handleChange(e)} }
                 count={500}
                 size="large"
                 hidePrevButton

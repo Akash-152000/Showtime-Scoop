@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./card.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Badge from "@mui/material/Badge";
@@ -60,6 +60,7 @@ const Card = (props) => {
   };
 
   const handleFav = (ele) => {
+    console.log(fav,fav.includes(ele));
     if (fav.includes(ele)) {
       removeFav(ele)
       setFavUpdated(!favUpdated)

@@ -10,7 +10,7 @@ const FavState = (props) => {
 
   const getFav = async () => {
     const response = await axios
-      .get("http://localhost:5000/api/fav/getfav", {
+      .get(`${process.env.REACT_APP_BACKEND_API}/api/fav/getfav`, {
         headers: {
           "Content-Type": "application/json",
           "auth-token": `${localStorage.getItem("token")}`,
@@ -28,7 +28,7 @@ const FavState = (props) => {
   const addFav = async () => {
     // console.log("token", token);
     const response = await axios.post(
-      "http://localhost:5000/api/fav/addfav",
+      `${process.env.REACT_APP_BACKEND_API}/api/fav/addfav`,
       {
         favourite: [],
       },
@@ -43,7 +43,7 @@ const FavState = (props) => {
 
   const updateFav = async (ele) => {
     const response = await axios.put(
-      `http://localhost:5000/api/fav/updatefav/${id}`,
+      `${process.env.REACT_APP_BACKEND_API}/api/fav/updatefav/${id}`,
       {
         favourite: ele,
       },
@@ -58,7 +58,7 @@ const FavState = (props) => {
 
   const removeFav = async (ele) => {
     const response = await axios.put(
-      `http://localhost:5000/api/fav/removefav/${id}`,
+      `${process.env.REACT_APP_BACKEND_API}/api/fav/removefav/${id}`,
       {
         favourite: ele,
       },

@@ -20,7 +20,7 @@ const Generes = (props) => {
   const handleAdd =(ele)=>{
     setSelectedGenres([...selectedGenres,ele]);
     setGenres(genres.filter((g)=>g.id!==ele.id));
-    setPage(1)
+    setPage("1")
     
   }
 
