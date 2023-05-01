@@ -15,7 +15,7 @@ const Home = () => {
   const {getUser} = authenticationContext
 
   const context =  useContext(fetchApiDataContext)
-  const {movies, tvShows, loading, showPortal,favUpdated,fav} = context;
+  const {movies, tvShows, loading, showPortal,favUpdated} = context;
 
   const contextFav = useContext(favContext)
   const {getFav} = contextFav

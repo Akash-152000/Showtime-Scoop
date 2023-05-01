@@ -3,7 +3,7 @@ import "./navbar.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import { deepOrange, deepPurple } from "@mui/material/colors";
+import { deepOrange } from "@mui/material/colors";
 
 const Navbar = () => {
   let location = useLocation();

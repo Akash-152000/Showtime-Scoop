@@ -8,7 +8,7 @@ const SearchCard = (props) => {
   const {data, name} = props
 
   const context = useContext(fetchApiDataContext);
-    const { movieData,setPoster, loading,setPage, showPortal, setShowPortal, setTitle, setDesc, setReleaseDate, setRating } = context;
+    const { showPortal} = context;
 
 
 

@@ -23,7 +23,7 @@ const Portal = () => {
 
 
   document.onkeydown = function (evt) {
-    if (evt.key == "Escape") {
+    if (evt.key === "Escape") {
       setShowPortal(false);
     }
   };

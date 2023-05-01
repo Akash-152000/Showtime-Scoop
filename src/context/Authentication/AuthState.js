@@ -12,7 +12,7 @@ const AuthState = (props) => {
   const { addFav } = context;
 
   const fetchContext = useContext(fetchApiDataContext)
-  const {userName, setUserName} = fetchContext
+  const {setUserName} = fetchContext
 
   const login = async (credentials) => {
     const response = await axios

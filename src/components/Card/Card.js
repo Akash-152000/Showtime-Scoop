@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./card.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Badge from "@mui/material/Badge";

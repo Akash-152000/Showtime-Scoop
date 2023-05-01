@@ -28,7 +28,6 @@ const Movies = (props) => {
     setPoster,
     loading,
     setPage,
-    page,
     showPortal,
     setShowPortal,
     setTitle,

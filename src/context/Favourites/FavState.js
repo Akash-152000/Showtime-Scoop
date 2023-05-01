@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import favContext from "./favContext";
 import axios from "axios";
 
@@ -25,8 +25,8 @@ const FavState = (props) => {
   };
 
   const addFav = async () => {
-    // console.log("token", token);
-    const response = await axios.post(
+
+    await axios.post(
       `${process.env.REACT_APP_BACKEND_API}/api/fav/addfav`,
       {
         favourite: [],
@@ -41,7 +41,7 @@ const FavState = (props) => {
   };
 
   const updateFav = async (ele) => {
-    const response = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_BACKEND_API}/api/fav/updatefav/${id}`,
       {
         favourite: ele,
@@ -56,7 +56,7 @@ const FavState = (props) => {
   };
 
   const removeFav = async (ele) => {
-    const response = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_BACKEND_API}/api/fav/removefav/${id}`,
       {
         favourite: ele,

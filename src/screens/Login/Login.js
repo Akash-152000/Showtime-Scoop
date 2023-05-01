@@ -1,11 +1,11 @@
-import React, {useState, useContext, useRef} from "react";
+import React, {useState, useContext} from "react";
 import authContext from "../../context/Authentication/authContext";
 // import alertContext from "../context/alert/alertContext";
 // import Alert from './Alert';
 
 const Login = () => {
 
-    const ref = useRef(null)
+    // const ref = useRef(null)
     const context = useContext(authContext);
     const {login} = context;
 
@@ -22,7 +22,7 @@ const Login = () => {
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        const result = await login(credentials)
+        await login(credentials)
     }
 
   return (

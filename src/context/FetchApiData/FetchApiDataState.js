@@ -157,6 +157,7 @@ const FetchApiDataState = (props) => {
         search,
         searchMovieData,
         searchTvData,
+        updatedSearchItem,
         setUpdatedSearchItem,
         showPortal,
         setShowPortal,

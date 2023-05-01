@@ -1,4 +1,4 @@
-import React,{useState, useContext, useRef} from 'react'
+import React,{useState, useContext} from 'react'
 import authContext from "../../context/Authentication/authContext";
 // import Alert from './Alert';
 
@@ -6,7 +6,7 @@ const Signup = () => {
 
   const [credentials, setcredentials] = useState({name:"",email:"",password:"",cPassword:""})
   const context = useContext(authContext);
-  const {signup, getUser} = context;
+  const {signup} = context;
 
 
 
@@ -20,7 +20,7 @@ const handleSubmit=async (e)=>{
     
 
     if(credentials.password === credentials.cPassword){
-      const result = await signup(credentials)
+      await signup(credentials)
     }
     else{
       console.log("Password and confirm password do not match")
