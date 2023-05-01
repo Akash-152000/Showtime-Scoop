@@ -1,15 +1,3 @@
-/* .card-container{
-    height: 19rem;
-} */ */
-
-/* .card{
-    height: 19rem;
-    width: 10rem;
-    background-color: #05161a;
-    border: none;
-    margin-right: 30px;
-}  */
-
 .card-img-top{
     object-fit: contain;
     max-height: 100%; 
