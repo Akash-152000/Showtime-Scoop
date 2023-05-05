@@ -8,6 +8,7 @@
     background: #0c364a;
     /* padding: 0; */
     cursor: pointer;
+    height: 5rem;
 }
 
 .heart{
@@ -19,4 +20,12 @@
     font-size: xx-large;
     transform: scale(1.2);
     /* transition: transform 0.5s; */
+}
+
+.card{
+    height: auto;
+    width: 13rem;
+    background-color: #05161a;
+    border: none;
+    margin-right: 30px;
 }
