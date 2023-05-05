@@ -81,6 +81,7 @@ const Portal = () => {
               <h5 className="rating">Rating: {Math.round(rating * 10) / 10}</h5>
             </div>
             <PortalDesc />
+            <h5 className="mt-3">Sooner you'll be able to watch the movies for free</h5>
           </div>
         ) : (
           <>
@@ -94,6 +95,7 @@ const Portal = () => {
                 </h5>
               </div>
               <PortalDesc />
+              <h5 className="mt-3">Sooner you'll be able to watch the movies for free</h5>
             </div>
             <h5 onClick={closePortal} className="close">
               X

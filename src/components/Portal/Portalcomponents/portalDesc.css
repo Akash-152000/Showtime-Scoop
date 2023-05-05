@@ -38,7 +38,7 @@
         overflow-x: auto;
         overflow-y: hidden;
         width: 100vw;
-        height: 200px;
+        height: 250px;
         background: #2E5263;
         padding-bottom: 20px;
         padding-left: 20px;
@@ -63,7 +63,7 @@
 }
 
 .desc-card{
-    height: 6rem;
+    height: 8rem;
     width: 10rem;
     border: none;
     margin-right: 30px;

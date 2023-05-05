@@ -91,7 +91,6 @@ const Movies = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getFav();
-      console.log("got fav");
       getUser(localStorage.getItem("token"));
       // favouriteMovie()
     } else {
