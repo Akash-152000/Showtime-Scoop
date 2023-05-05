@@ -6,13 +6,13 @@
     width: 0;
 }
 
-.card{
+/* .card{
     height: auto;
     width: 10rem;
     background-color: #05161a;
     border: none;
     margin-right: 30px;
-}
+} */
 
 .card-img-top{
     object-fit: contain;

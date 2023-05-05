@@ -17,6 +17,8 @@ const Navbar = () => {
     setSearchItem(e.target.value);
   };
 
+
+
   const handleClick = (e) => {
     e.preventDefault();
     if (searchItem === "") {
@@ -35,13 +37,13 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-* pt-3">
+      <nav className="navbar text-white navbar-expand-lg bg-* pt-3">
         <div className="container-fluid">
           <Link className="navbar-brand text-white" to="/">
             Showtime Scoop
           </Link>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler "
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -49,7 +51,7 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <i className="fa fa-bars" aria-hidden="true" style={{"color":"#e6e6ff"}}></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

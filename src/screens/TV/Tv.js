@@ -19,7 +19,6 @@ const darkTheme = createTheme({
 });
 
 const Tv = () => {
-
   let navigate = useNavigate();
 
   const context = useContext(fetchApiDataContext);
@@ -37,15 +36,14 @@ const Tv = () => {
     setCast,
     setFavUpdated,
     favUpdated,
-    setEleInfo
+    setEleInfo,
   } = context;
 
-  const authenticationContext = useContext(authContext)
-  const {getUser} = authenticationContext
+  const authenticationContext = useContext(authContext);
+  const { getUser } = authenticationContext;
 
-  const contextFav = useContext(favContext)
-  const {getFav,updateFav, removeFav, fav} = contextFav
-
+  const contextFav = useContext(favContext);
+  const { getFav, updateFav, removeFav, fav } = contextFav;
 
   const [invisible, setInvisible] = useState(true);
 
@@ -66,7 +64,7 @@ const Tv = () => {
     setPoster(ele.poster_path);
 
     setDesc(ele.overview);
-    setEleInfo(ele.id)  
+    setEleInfo(ele.id);
 
     setRating(ele.vote_average);
     setTitle(ele.name);
@@ -75,29 +73,86 @@ const Tv = () => {
 
   const handleFav = (ele) => {
     if (fav.includes(ele)) {
-      removeFav(ele)
-      setFavUpdated(!favUpdated)
-
+      removeFav(ele);
+      setFavUpdated(!favUpdated);
     } else {
-      updateFav(ele)
-      setFavUpdated(!favUpdated)
+      updateFav(ele);
+      setFavUpdated(!favUpdated);
     }
   };
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
       getFav();
-      getUser(localStorage.getItem('token'));
+      getUser(localStorage.getItem("token"));
+    } else {
+      navigate("/login");
     }
-    else{
-      navigate("/login")
-    }
-  },[favUpdated])
+  }, [favUpdated]);
 
   return (
     <div className="wrapper mt-5 container" style={{ maxWidth: "100vw" }}>
       <Generes name="tv" />
       {loading ? (
         <Spinner />
+      ) : window.innerWidth <= 600 ? (
+        <div className="row">
+          {showPortal && <Portal />}
+          {tvData.map((ele) => {
+            return (
+              <div className="col-6">
+                <div
+                  className="card mb-3"
+                  key={ele.id}
+                  style={{
+                    display: `${
+                      ele.poster_path === null || ele.poster_path === undefined
+                        ? "none"
+                        : ""
+                    }`,
+                  }}
+                >
+                  <Badge
+                    badgeContent={ele.vote_average}
+                    color={
+                      ele.vote_average >= 8
+                        ? "success"
+                        : ele.vote_average >= 6
+                        ? "warning"
+                        : "error"
+                    }
+                    className="badge"
+                  >
+                    <div
+                      className="card-container mb-5"
+                      style={{ height: "auto" }}
+                    >
+                      <img
+                        onClick={() => handleClick(ele)}
+                        src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
+                        className="card-img-top"
+                        alt=""
+                      />
+                      <div className="card-body text-center text-light">
+                        <p>{ele.name}</p>
+                      </div>
+                    </div>
+                  </Badge>
+                </div>
+              </div>
+            );
+          })}
+          <div className="pagination">
+            <ThemeProvider theme={darkTheme}>
+              <Pagination
+                onChange={(e) => setPage(e.target.textContent)}
+                count={500}
+                size="large"
+                hidePrevButton
+                hideNextButton
+              />
+            </ThemeProvider>
+          </div>
+        </div>
       ) : (
         <div className="row" style={{ marginLeft: 90 }}>
           {showPortal && <Portal />}
@@ -123,26 +178,20 @@ const Tv = () => {
                       ? "warning"
                       : "error"
                   }
-                  
                   className="badge"
-                  invisible={invisible !== ele.id}
                 >
-                  <div className="card-container mb-5" style={{height:"auto"}}>
+                  <div
+                    className="card-container mb-5"
+                    style={{ height: "auto" }}
+                  >
                     <img
                       onClick={() => handleClick(ele)}
-                      onMouseEnter={() => setInvisible(ele.id)}
-                      onMouseLeave={() => setInvisible(true)}
                       src={`https://image.tmdb.org/t/p/w500${ele.poster_path}`}
                       className="card-img-top"
                       alt=""
                     />
                     <div className="card-body text-center text-light">
-                      <i
-                        className={`${
-                          fav.includes(ele.id) ? "fa-solid" : "fa-regular"
-                        } fa-heart  fa-lg heart`}
-                        onClick={() => handleFav(ele.id)}
-                      ></i>
+                      <p>{ele.name}</p>
                     </div>
                   </div>
                 </Badge>

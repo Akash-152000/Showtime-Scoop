@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./card.css";
 import fetchApiDataContext from "../../context/FetchApiData/fetchApiDataContext";
 import Badge from "@mui/material/Badge";
@@ -17,12 +17,11 @@ const Card = (props) => {
     setCast,
     setEleInfo,
     setFavUpdated,
-    favUpdated
+    favUpdated,
   } = context;
 
-  const contextFav = useContext(favContext)
-  const {updateFav, removeFav, fav} = contextFav
-
+  const contextFav = useContext(favContext);
+  const { updateFav, getFav, removeFav, fav } = contextFav;
 
   const [invisible, setInvisible] = useState(true);
 
@@ -59,20 +58,22 @@ const Card = (props) => {
     }
   };
 
-  const handleFav = (ele) => {
-    console.log(fav,fav.includes(ele));
-    if (fav.includes(ele)) {
-      removeFav(ele)
-      setFavUpdated(!favUpdated)
+  // const handleFav = (ele) => {
+  //   console.log(fav,fav.includes(ele), favUpdated);
+  //   if (fav.includes(ele)) {
+  //     removeFav(ele)
+  //     setFavUpdated(!favUpdated)
+  //     console.log('remove',!favUpdated);
 
-    } else {
-      updateFav(ele)
-      setFavUpdated(!favUpdated)
-    }
-  };
+  //   } else {
+  //     updateFav(ele)
+  //     setFavUpdated(!favUpdated)
+  //     console.log('update',!favUpdated);
+  //   }
+  // };
 
   return (
-    <div className="card" >
+    <div className="card">
       <Badge
         badgeContent={Math.round(props.ele.vote_average * 10) / 10}
         color={
@@ -82,26 +83,22 @@ const Card = (props) => {
             ? "warning"
             : "error"
         }
-        invisible={invisible !== props.ele.id}
       >
         {props.poster ? (
           <div className="d-flex flex-column mx-2">
             {/* {console.log(ele)} */}
             <img
               onClick={handleClick}
-              onMouseEnter={() => setInvisible(props.ele.id)}
-              onMouseLeave={() => setInvisible(true)}
               src={`https://image.tmdb.org/t/p/w500${props.poster}`}
               className="card-img-top"
               alt=""
             />
             <div className="card-body text-center text-light">
-              <i
-                className={`${
-                  fav.includes(props.ele) ? "fa-solid" : "fa-regular"
-                } fa-heart fa-lg heart`}
-                onClick={() => handleFav(props.ele)}
-              ></i>
+              <p>
+                {props.name === "Movies"
+                  ? props.ele.title.split(":")[0]
+                  : props.ele.name.split(":")[0]}
+              </p>
             </div>
           </div>
         ) : (
