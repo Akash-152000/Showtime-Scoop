@@ -1,29 +1,26 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import authContext from "../../context/Authentication/authContext";
 // import alertContext from "../context/alert/alertContext";
 // import Alert from './Alert';
 
 const Login = () => {
+  // const ref = useRef(null)
+  const context = useContext(authContext);
+  const { login } = context;
 
-    // const ref = useRef(null)
-    const context = useContext(authContext);
-    const {login} = context;
+  // const AlertContext = useContext(alertContext)
+  // const {showAlert,alert} = AlertContext
 
-    // const AlertContext = useContext(alertContext)
-    // const {showAlert,alert} = AlertContext
+  const [credentials, setcredentials] = useState({ email: "", password: "" });
 
-    const [credentials, setcredentials] = useState({email:"",password:""})
+  const onChange = (e) => {
+    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-    const onChange =(e)=>{
-        setcredentials({...credentials,[e.target.name]:e.target.value})
- 
-    }
-
-
-    const handleSubmit= async (e)=>{
-        e.preventDefault();
-        await login(credentials)
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(credentials);
+  };
 
   return (
     <div className="container my-4 text-light">
@@ -32,7 +29,7 @@ const Login = () => {
       {/* </div> */}
       <h2 className="mb-3">Login to continue</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group mb-3" >
+        <div className="form-group mb-3">
           <label htmlFor="email">Email address</label>
           <input
             type="email"
@@ -43,7 +40,6 @@ const Login = () => {
             value={credentials.email}
             onChange={onChange}
           />
-
         </div>
         <div className="form-group mb-3">
           <label htmlFor="password">Password</label>
@@ -62,6 +58,11 @@ const Login = () => {
           Submit
         </button>
       </form>
+
+      <h3 className="text-center mt-5">
+        Hello, since we are using free servers, signing or login takes a bit of
+        time, so be patient after you put in your details.
+      </h3>
     </div>
   );
 };

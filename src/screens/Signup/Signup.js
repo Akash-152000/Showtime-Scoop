@@ -1,34 +1,33 @@
-import React,{useState, useContext} from 'react'
+import React, { useState, useContext } from "react";
 import authContext from "../../context/Authentication/authContext";
 // import Alert from './Alert';
 
 const Signup = () => {
-
-  const [credentials, setcredentials] = useState({name:"",email:"",password:"",cPassword:""})
+  const [credentials, setcredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cPassword: "",
+  });
   const context = useContext(authContext);
-  const {signup} = context;
+  const { signup } = context;
 
+  const onChange = (e) => {
+    setcredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-
-  const onChange =(e)=>{
-    setcredentials({...credentials,[e.target.name]:e.target.value})
-
-}
-
-const handleSubmit=async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
 
-    if(credentials.password === credentials.cPassword){
-      await signup(credentials)
+    if (credentials.password === credentials.cPassword) {
+      await signup(credentials);
+    } else {
+      console.log("Password and confirm password do not match");
     }
-    else{
-      console.log("Password and confirm password do not match")
-    }
-}
+  };
 
   return (
-    <div className='container my-4 text-light'>
+    <div className="container my-4 text-light">
       {/* <div ref={ref}>
       </div> */}
       <h2 className="mb-2">Sign up to use Showtime Scoop</h2>
@@ -92,8 +91,13 @@ const handleSubmit=async (e)=>{
           Submit
         </button>
       </form>
-    </div>
-  )
-}
 
-export default Signup
+      <h3 className="text-center mt-5">
+        Hello, since we are using free servers, signing or login takes a bit of
+        time, so be patient after you put in your details.
+      </h3>
+    </div>
+  );
+};
+
+export default Signup;
