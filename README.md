@@ -1,4 +1,4 @@
-[showtime](https://github.com/Akash-152000/Showtime-Scoop/assets/57212963/3cf386b2-361c-4672-b118-52324aab83cf)
+[![showtime](https://github.com/Akash-152000/Showtime-Scoop/assets/57212963/3cf386b2-361c-4672-b118-52324aab83cf)](https://github-production-user-asset-6210df.s3.amazonaws.com/57212963/238070598-3cf386b2-361c-4672-b118-52324aab83cf.png)
 
 
 # Getting Started with Create React App
