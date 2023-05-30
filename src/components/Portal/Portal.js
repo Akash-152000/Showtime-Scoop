@@ -20,6 +20,7 @@ const Portal = () => {
     eleInfo,
     setFavUpdated,
     favUpdated,
+    showPortal
   } = context;
 
   const contextFav = useContext(favContext);
@@ -51,6 +52,17 @@ const Portal = () => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       getFav();
+      if (showPortal) {
+        // push to history when modal opens
+        window.history.pushState(null, '', window.location.href)
+        
+        // close modal on 'back'
+        window.onpopstate = () => {
+          window.onpopstate = () => {}
+          window.history.back()
+          setShowPortal(false)
+        }
+      }
     } else {
       navigate("/login");
     }
@@ -80,7 +92,7 @@ const Portal = () => {
               <h5 className="releaseDate">{releaseDate}</h5>
               <h5 className="rating">Rating: {Math.round(rating * 10) / 10}</h5>
             </div>
-            <PortalDesc />
+            {/* <PortalDesc /> */}
             <h5 className="mt-3">Sooner you'll be able to watch the movies for free</h5>
           </div>
         ) : (
