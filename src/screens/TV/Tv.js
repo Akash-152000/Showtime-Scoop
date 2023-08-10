@@ -82,7 +82,7 @@ const Tv = () => {
   };
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      getFav();
+      // getFav();
       getUser(localStorage.getItem("token"));
     } else {
       navigate("/login");

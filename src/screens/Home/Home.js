@@ -24,7 +24,7 @@ const Home = () => {
     // localStorage.clear()
     if(localStorage.getItem('token')){
       // console.log(localStorage.getItem('token'));
-      getFav();
+      // getFav();
       getUser(localStorage.getItem('token'));
     }
     else{

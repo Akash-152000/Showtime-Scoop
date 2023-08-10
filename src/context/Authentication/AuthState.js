@@ -15,6 +15,7 @@ const AuthState = (props) => {
   const {setUserName} = fetchContext
 
   const login = async (credentials) => {
+    
     const response = await axios
       .post(
         `${process.env.REACT_APP_BACKEND_API}/api/auth/login`,

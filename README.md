@@ -1,3 +1,6 @@
+[![showtime](https://github.com/Akash-152000/Showtime-Scoop/assets/57212963/3cf386b2-361c-4672-b118-52324aab83cf)](https://github-production-user-asset-6210df.s3.amazonaws.com/57212963/238070598-3cf386b2-361c-4672-b118-52324aab83cf.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -12,7 +15,8 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You may also see any lint errors in the console.!
+
 
 ### `npm test`
 
