@@ -45,9 +45,10 @@ const FetchApiDataState = (props) => {
 
   useEffect(() => {
     // console.log(title,desc,releaseDate,rating);
+    const api_key = process.env.REACT_APP_API_KEY
     axios
       .get(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${api_key}`
       )
       .then((response) => {
         const data = response.data;
@@ -60,7 +61,7 @@ const FetchApiDataState = (props) => {
 
     axios
       .get(
-        `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.REACT_APP_API_KEY}`
+        `https://api.themoviedb.org/3/trending/tv/day?api_key=${api_key}`
       )
       .then((response) => {
         const data = response.data;
@@ -75,7 +76,7 @@ const FetchApiDataState = (props) => {
 
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
       )
       .then((response) => {
         const data = response.data;
@@ -90,7 +91,7 @@ const FetchApiDataState = (props) => {
 
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
+        `https://api.themoviedb.org/3/discover/tv?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForUrl}`
       )
       .then((response) => {
         const data = response.data;
@@ -109,7 +110,7 @@ const FetchApiDataState = (props) => {
     fav.map((ele) => {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${ele}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+          `https://api.themoviedb.org/3/movie/${ele}?api_key=${api_key}&language=en-US`
         )
         .then((response) => {
           console.log(response);
@@ -123,7 +124,7 @@ const FetchApiDataState = (props) => {
   const search = (searchQuery) => {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchQuery}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${searchQuery}`
       )
       .then((response) => {
         const data = response.data;
@@ -135,7 +136,7 @@ const FetchApiDataState = (props) => {
 
     axios
       .get(
-        `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${searchQuery}`
+        `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&language=en-US&query=${searchQuery}`
       )
       .then((response) => {
         const data = response.data;

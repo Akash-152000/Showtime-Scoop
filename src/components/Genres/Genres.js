@@ -34,10 +34,11 @@ const Generes = (props) => {
 
 
 const getGenres=async ()=>{
+  const api_key= process.env.REACT_APP_API_KEY
 
   await axios
   .get(
-    `https://api.themoviedb.org/3/genre/${props.name}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    `https://api.themoviedb.org/3/genre/${props.name}/list?api_key=${api_key}&language=en-US`
   )
   .then((response) => {
     const data = response.data;

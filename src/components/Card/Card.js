@@ -26,12 +26,13 @@ const Card = (props) => {
   const [invisible, setInvisible] = useState(true);
 
   const handleClick = async () => {
+    const api_key=process.env.REACT_APP_API_KEY
     await axios
       .get(
         `https://api.themoviedb.org/3/${
           props.name === "Movies" ? "movie" : "tv"
         }/${props.ele.id}/credits?api_key=${
-          process.env.REACT_APP_API_KEY
+          api_key
         }&language=en-US`
       )
       .then((response) => {

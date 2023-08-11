@@ -49,9 +49,10 @@ const Movies = (props) => {
   const [invisible, setInvisible] = useState(true);
 
   const handleClick = async (ele) => {
+    const api_key=process.env.REACT_APP_API_KEY
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/${ele.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${ele.id}/credits?api_key=${api_key}&language=en-US`
       )
       .then((response) => {
         const data = response.data;
