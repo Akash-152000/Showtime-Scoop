@@ -107,6 +107,7 @@ const FetchApiDataState = (props) => {
 
   const favouriteMovie = () => {
     console.log(fav);
+    const api_key = process.env.REACT_APP_API_KEY
     fav.map((ele) => {
       axios
         .get(
@@ -122,6 +123,7 @@ const FetchApiDataState = (props) => {
   /////////////////////////////////////////////////Search/////////////////////////////////////////////////////
 
   const search = (searchQuery) => {
+    const api_key = process.env.REACT_APP_API_KEY
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${searchQuery}`
